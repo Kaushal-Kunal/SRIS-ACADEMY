@@ -134,6 +134,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { LoginanotheComponent } from './admin/loginanothe/loginanothe.component';
 import { CertificateLoginComponent } from './institute/certificate-login/certificate-login.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -282,7 +283,8 @@ import { CertificateLoginComponent } from './institute/certificate-login/certifi
       showForeground: true,
     })
   ],
-  providers: [],
+  providers: [ 
+    {provide: LocationStrategy, useClass: HashLocationStrategy},],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
