@@ -21,7 +21,7 @@ export class CertificateComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   cer_count: string = "0"
-  imgUrl: string = 'https://shriramitsolutions.co.in/cms/assets/certificate/';
+  imgUrl: string = '';
   inst_id: any
   login: any
   login_deatils: any
@@ -40,6 +40,11 @@ export class CertificateComponent implements OnInit {
     this.login_deatils = localStorage.getItem('Token')
     this.login = JSON.parse(this.login_deatils)
     this.inst_id = this.login.inst_id
+    this.service.certificateBaseUrl.subscribe(
+      (res:any)=>{
+        this.imgUrl =  res
+      }
+    )
   }
 
   ngOnInit(): void {

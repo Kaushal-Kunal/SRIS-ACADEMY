@@ -23,7 +23,7 @@ export class EmployeeComponent implements OnInit {
   login: any
   count_emp: Number = 0
   deletevalue: any = 1
-  imgUrl: string = 'assets/';
+  imgUrl: string = '';
   emp_data:any
 
 
@@ -35,6 +35,11 @@ export class EmployeeComponent implements OnInit {
   ) {
     this.login_deatils = localStorage.getItem('Token')
     this.login = JSON.parse(this.login_deatils)
+    this.services.imgBaseUrl.subscribe(
+      (res:any)=>{
+        this.imgUrl = res
+      }
+    )
   }
 
   ngOnInit(): void {

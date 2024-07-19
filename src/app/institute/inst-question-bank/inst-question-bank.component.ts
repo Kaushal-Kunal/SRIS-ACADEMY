@@ -19,7 +19,7 @@ export class InstQuestionBankComponent implements OnInit {
   count_inst_question_bank: number = 0;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  imgUrl: string = 'assets/';
+  imgUrl: string = '';
   login_deatils: any
   login: any
   inst_id: any
@@ -48,6 +48,12 @@ export class InstQuestionBankComponent implements OnInit {
     this.inst_id_for_inst_login = this.login.inst_id
     console.log("std" + this.inst_id_for_std)
     console.log("inst" + this.inst_id_for_inst_login)
+
+    this.service.imgBaseUrl.subscribe(
+      (res:any)=>{
+        this.imgUrl = res
+      }
+    )
   }
 
   ngOnInit(): void {

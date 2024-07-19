@@ -22,9 +22,9 @@ export class AddEditInstNotesComponent implements OnInit {
   login_deatils: any
   login: any
   inst_id_for_inst_login: any;
-  image_url: any = "assets/doc.png"
+  image_url: any = ""
   image_select: any = null
-  url: string = 'assets/'
+  url: string = ''
 
   constructor(
     private popup: NgToastService,
@@ -40,6 +40,14 @@ export class AddEditInstNotesComponent implements OnInit {
     this.login_deatils = localStorage.getItem('Token')
     this.login = JSON.parse(this.login_deatils)
     this.inst_id_for_inst_login = this.login.inst_id
+
+    this.service.imgBaseUrl.subscribe(
+      (rs:any)=>{
+        const url = rs
+        this.url = rs
+        this.image_url = rs+'doc.png'
+      }
+    )
   }
   ngOnInit(): void {
     const formdata = new FormData()

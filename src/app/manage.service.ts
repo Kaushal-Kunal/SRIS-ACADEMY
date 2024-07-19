@@ -13,6 +13,7 @@ export class ManageService {
 loginValid = new BehaviorSubject(false)
 // certificateLogin = new BehaviorSubject(false)
   imgBaseUrl = new BehaviorSubject<string>('https://shriramitsolutions.co.in/cms/assets/')
+  certificateBaseUrl = new BehaviorSubject<string>('https://shriramitsolutions.co.in/cms/assets/certificate/')
 
   baseUrl: string = 'https://shriramitsolutions.co.in/cms/api/';
 

@@ -32,17 +32,17 @@ export class AddEditCertificateComponent implements OnInit {
   block_data:any
   panchayat_data:any
   // for new docment  
-  url:string = 'https://educatorbox.com/assets/certificate/'
-  aadhar_url:any = "assets/doc.png"
+  url:string = ''
+  aadhar_url:any = ""
   aadhar_select:any
 
-  certificate_url:any = "assets/pdf_icon.jpg"
+  certificate_url:any = ""
   certificate_select:any
 
-  markseet_url:any = "assets/doc.png"
+  markseet_url:any = ""
   markseet_select:any
 
-  image_url:any = "assets/user.png"
+  image_url:any = ""
   image_select:any
 
   Country= "India"
@@ -64,6 +64,22 @@ export class AddEditCertificateComponent implements OnInit {
     this.login_deatils = localStorage.getItem('Token')
     this.login = JSON.parse(this.login_deatils)
     this.inst_id = this.login.inst_id
+
+    this.services.certificateBaseUrl.subscribe(
+      (res:any)=>{
+        this.url = res
+      }
+    )
+
+    this.services.imgBaseUrl.subscribe(
+      (res:any)=>{
+        const baseul =  res
+        this.aadhar_url =  baseul+'doc.png'
+        this.certificate_url =  baseul+'pdf_icon.jpg'
+        this.markseet_url =  baseul+'doc.png'
+        this.image_url =  baseul+'user.png'
+      }
+    )
   }
 
   ngOnInit(): void {

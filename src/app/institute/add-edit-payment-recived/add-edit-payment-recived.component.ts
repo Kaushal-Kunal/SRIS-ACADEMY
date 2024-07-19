@@ -24,7 +24,7 @@ export class AddEditPaymentRecivedComponent implements OnInit {
   monthly_act: boolean = true;
   current_act: boolean = true;
   setvalue: any;
-  imgUrl: string = 'assets/profile.png';
+  imgUrl: string = '';
   login_deatils: any;
   login: any;
   inst_id: any;
@@ -47,6 +47,12 @@ export class AddEditPaymentRecivedComponent implements OnInit {
     this.login = JSON.parse(this.login_deatils)
     this.inst_id = this.login.inst_id
     this.inst_id_for_inst_login = this.login.inst_id
+    this.service.imgBaseUrl.subscribe(
+      (rs:any)=>{
+        const url = rs
+        this.imgUrl = rs+'profile.png'
+      }
+    )
   }
 
   ngOnInit(): void {

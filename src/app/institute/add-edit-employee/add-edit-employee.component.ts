@@ -22,8 +22,8 @@ export class AddEditEmployeeComponent implements OnInit {
   inst_id: any;
   inst_id_for_inst_login: any;
   image_select: any = null
-  image_url: any = "assets/img.png"
-  url: string = 'assets/'
+  image_url: any = ""
+  url: string = ''
 
 
   constructor(
@@ -41,6 +41,14 @@ export class AddEditEmployeeComponent implements OnInit {
     this.login = JSON.parse(this.login_deatils)
     this.inst_id = this.login.inst_id
     this.inst_id_for_inst_login = this.login.inst_id
+
+    this.manageService.imgBaseUrl.subscribe(
+      (rs:any)=>{
+        const url = rs
+        this.url = rs
+        this.image_url = rs+'img.png'
+      }
+    )
   }
 
   ngOnInit(): void {

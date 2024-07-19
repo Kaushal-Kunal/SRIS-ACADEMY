@@ -18,7 +18,7 @@ export class InstituteHomeComponent implements OnInit {
   opened: boolean = true
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
-  url: string = 'assets/';
+  url: string = '';
   img_url: string = '';
   login_deatils: any
   login: any
@@ -35,6 +35,12 @@ export class InstituteHomeComponent implements OnInit {
     else {
       this.action_menu = false
     }
+
+    this.servies.imgBaseUrl.subscribe(
+      (res:any)=>{
+        this.url = res
+      }
+    )
   }
 
   ngOnInit(): void {

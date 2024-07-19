@@ -15,7 +15,7 @@ export class InstituteUpdateProfileComponent implements OnInit {
   hide = true;
   actionBtn: string = 'Update'
   instupdate: string = 'Profile Update'
-  imgUrl: string = 'assets/';
+  imgUrl: string = '';
   institute_profile_data: any
   institute_id: any;
   login_deatils: any;
@@ -42,6 +42,11 @@ export class InstituteUpdateProfileComponent implements OnInit {
     this.login = JSON.parse(this.login_deatils)
     console.log(this.login.inst_id)
     this.institute_id = this.login.inst_id
+    this.service.imgBaseUrl.subscribe(
+      (res:any)=>{
+        this.imgUrl = res
+      }
+    )
   }
 
   ngOnInit(): void {

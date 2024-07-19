@@ -20,6 +20,7 @@ export class InstituteLoginComponent implements OnInit {
   deletevalue = 1
   sendotp:boolean = true
   inst_login_form !: FormGroup
+  imgBaseUrl :string =''
   constructor(
     private popup: NgToastService,
     private dailog: MatDialog,
@@ -30,6 +31,11 @@ export class InstituteLoginComponent implements OnInit {
   ) {
     localStorage.removeItem
     localStorage.clear()
+    this.service.imgBaseUrl.subscribe(
+      (res:any)=>{
+        this.imgBaseUrl = res
+      }
+    )
   }
 
   ngOnInit(): void {

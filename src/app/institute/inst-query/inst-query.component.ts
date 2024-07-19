@@ -22,7 +22,7 @@ export class InstQueryComponent implements OnInit {
   login_deatils: any
   login: any
   inst_id: any
-  url:string = 'assets/'
+  url:string = ''
   inst_id_for_inst_login: any;
 
   constructor(
@@ -38,6 +38,12 @@ export class InstQueryComponent implements OnInit {
     this.login = JSON.parse(this.login_deatils)
     this.inst_id = this.login.institute_id_fk
     this.inst_id_for_inst_login = this.login.inst_id
+
+    this.service.imgBaseUrl.subscribe(
+      (res:any)=>{
+        this.url = res
+      }
+    )
   }
 
   ngOnInit(): void {

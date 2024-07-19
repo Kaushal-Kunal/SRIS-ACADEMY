@@ -27,7 +27,7 @@ export class PaymentReceivedComponent implements OnInit {
   login: any
   inst_id: any
   std_id: any;
-  imgUrl: string = 'assets/';
+  imgUrl: string = '';
   cur_year: any = String((new Date()).getFullYear())
   frodate: any
   inst_td_height: string = 'inst_td_height'
@@ -52,6 +52,12 @@ export class PaymentReceivedComponent implements OnInit {
     };
     this.login_deatils = localStorage.getItem('Token')
     this.login = JSON.parse(this.login_deatils)
+
+    this.service.imgBaseUrl.subscribe(
+      (res:any)=>{
+        this.imgUrl = res
+      }
+    )
 
   }
 

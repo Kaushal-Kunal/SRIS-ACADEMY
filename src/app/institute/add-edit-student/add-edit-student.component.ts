@@ -21,7 +21,7 @@ export class AddEditStudentComponent implements OnInit {
   heading_act: string = 'Add Registration'
   admin = 1;
   institute_id: any;
-  selectedImage: any = 'https://educatorbox.com/assets/user.png';
+  selectedImage: any = '';
   status: any = 1
   login_deatils: any
   login: any
@@ -35,8 +35,8 @@ export class AddEditStudentComponent implements OnInit {
   district_data: any
   action_textbox:boolean = false
   image_select:any = null
-  image_url:any = "assets/img.png"
-  url:string = 'assets/'
+  image_url:any = ""
+  url:string = ''
   isPasswordActive:boolean = true
   constructor(
     private popup: NgToastService,
@@ -72,6 +72,16 @@ export class AddEditStudentComponent implements OnInit {
         }
       )
     }
+
+    this.service.imgBaseUrl.subscribe(
+      (rs:any)=>{
+        const url = rs
+        this.url =  rs
+        this.image_url =  rs+'img.png'
+        this.selectedImage = rs+'user.png'
+      }
+    )
+    
   }
 
   ngOnInit(): void {

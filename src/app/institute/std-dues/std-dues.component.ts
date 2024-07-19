@@ -17,7 +17,7 @@ export class StdDuesComponent implements OnInit {
   count_dues: number = 0;
   cur_year: any
   frodate: any
-  imgUrl: string = 'assets/';
+  imgUrl: string = '';
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   tabledata: any;
@@ -34,6 +34,12 @@ export class StdDuesComponent implements OnInit {
     this.login_deatils = localStorage.getItem('Token')
     this.login = JSON.parse(this.login_deatils)
     console.log(this.login.inst_id)
+
+    this.servies.imgBaseUrl.subscribe(
+      (res:any)=>{
+        this.imgUrl = res
+      }
+    )
   }
 
   ngOnInit(): void {

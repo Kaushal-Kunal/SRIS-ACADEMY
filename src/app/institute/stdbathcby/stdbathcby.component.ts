@@ -27,7 +27,7 @@ export class StdbathcbyComponent implements OnInit {
   routdata:any
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  imgUrl: string = 'assets/';
+  imgUrl: string = '';
   color: ThemePalette = 'primary'
   constructor(
     private dailog: MatDialog,
@@ -40,6 +40,11 @@ export class StdbathcbyComponent implements OnInit {
     this.login_deatils = localStorage.getItem('Token')
     this.login = JSON.parse(this.login_deatils)
 
+    this.service.imgBaseUrl.subscribe(
+      (res:any)=>{
+        this.imgUrl = res
+      }
+    )
   }
 
   ngOnInit(): void {
