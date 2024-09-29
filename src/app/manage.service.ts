@@ -10,8 +10,8 @@ export class ManageService {
     private http: HttpClient
   ) { }
 
-loginValid = new BehaviorSubject(false)
-// certificateLogin = new BehaviorSubject(false)
+  loginValid = new BehaviorSubject(false)
+  // certificateLogin = new BehaviorSubject(false)
   imgBaseUrl = new BehaviorSubject<string>('https://shriramitsolutions.co.in/cms/assets/')
   certificateBaseUrl = new BehaviorSubject<string>('https://shriramitsolutions.co.in/cms/assets/certificate/')
 
@@ -38,10 +38,10 @@ loginValid = new BehaviorSubject(false)
   admin_delete_enquiry(data: any) {
     return this.http.post<any>(this.baseUrl + 'admin_enquiry_delete.php', data);
   }
-  admin_for_student_view(){
+  admin_for_student_view() {
     return this.http.get<[]>(this.baseUrl + 'admin_for_student_view.php')
   }
-  admin_for_admission_view(){
+  admin_for_admission_view() {
     return this.http.get<[]>(this.baseUrl + 'admin_for_admission_view.php')
   }
   // for course module 
@@ -130,12 +130,12 @@ loginValid = new BehaviorSubject(false)
   }
 
   std_admission(data: any) {
-      console.log(Array.from(data.entries()))
+    console.log(Array.from(data.entries()))
     return this.http.post<any>(this.baseUrl + 'student_admission_insert.php', data);
   }
 
   admission_delete(data: any) {
-      console.log(Array.from(data.entries()))
+    console.log(Array.from(data.entries()))
     return this.http.post<any>(this.baseUrl + 'admission_delete.php', data);
   }
 
@@ -157,7 +157,7 @@ loginValid = new BehaviorSubject(false)
   get_dues_by_reg_no(data: any) {
     return this.http.post<any>(this.baseUrl + 'get_dues_by_reg_no.php', data);
   }
-  
+
   aadhar_verification(data: any) {
     return this.http.post<any>(this.baseUrl + 'aadhar_verification.php', data);
   }
@@ -202,7 +202,7 @@ loginValid = new BehaviorSubject(false)
   student_conform(data: any) {
     return this.http.post<any>(this.baseUrl + 'student_conform.php', data);
   }
- 
+
   // for enquiry module 
   post_enquiry(data: any) {
     return this.http.post<any>(this.baseUrl + 'enquiry_insert.php', data)
@@ -342,7 +342,7 @@ loginValid = new BehaviorSubject(false)
     return this.http.post<any>(this.baseUrl + 'inst_self_reg.php', data);
   }
   inst_login(data: any) {
-    return this.http.post<any>(this.baseUrl+'institute_login.php', data);
+    return this.http.post<any>(this.baseUrl + 'institute_login.php', data);
   }
   // for admission 
   std_email_verfiy(data: any) {
@@ -483,7 +483,7 @@ loginValid = new BehaviorSubject(false)
   get_dues_by_std_id(data: any) {
     return this.http.post<any>(this.baseUrl + 'get_dues_by_std_id.php', data);
   }
- 
+
   // for certificate module working
   get_certificate() {
     return this.http.get<[]>(this.baseUrl + 'get_certificate.php')
@@ -535,7 +535,7 @@ loginValid = new BehaviorSubject(false)
   get_expence_by_month(data: any) {
     return this.http.post<any>(this.baseUrl + 'get_expence_by_month.php', data);
   }
-  
+
   get_expence_by_year(data: any) {
     return this.http.post<any>(this.baseUrl + 'get_expence_by_year.php', data);
   }
@@ -577,7 +577,7 @@ loginValid = new BehaviorSubject(false)
   get_ledger_by_month(data: any) {
     return this.http.post<any>(this.baseUrl + 'get_ledger_by_month.php', data);
   }
-  
+
   get_ledger_by_year(data: any) {
     return this.http.post<any>(this.baseUrl + 'get_ledger_by_year.php', data);
   }
@@ -617,8 +617,16 @@ loginValid = new BehaviorSubject(false)
     console.log(data)
     return this.http.post<any>(this.baseUrl + 'std_chnage_password.php', data)
   }
-  
+
   std_verifiy_forgot(data: any) {
     return this.http.post<any>(this.baseUrl + 'std_verifiy_forgot.php', data)
+  }
+
+  // for unit  
+  get_unit_by_inst_id(data: any) {
+    return this.http.post<any>(this.baseUrl + 'get_unit_by_inst_id.php', data);
+  }
+  unit_insert(data: any) {
+    return this.http.post<any>(this.baseUrl + 'unit_insert.php', data);
   }
 } 

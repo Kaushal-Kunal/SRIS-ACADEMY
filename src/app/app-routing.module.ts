@@ -66,6 +66,7 @@ import { EmployeeDashboardComponent } from './employee/employee-dashboard/employ
 import { HomeEnquiryComponent } from './admin/home-enquiry/home-enquiry.component';
 import { LiveClassComponent } from './institute/live-class/live-class.component';
 import { CertificateLoginComponent } from './institute/certificate-login/certificate-login.component';
+import { ViewUnitComponent } from './institute/Unit/view-unit/view-unit.component';
 
 const routes: Routes = [
   { path: '', component: InstituteLoginComponent },
@@ -167,7 +168,8 @@ const routes: Routes = [
       { path: 'panchayat', component: PanchayatComponent },
       { path: 'ward', component: WardComponent },
       {path: 'liveclass', component:LiveClassComponent},
-      {path:'certificateLogin', component:CertificateLoginComponent}
+      {path:'certificateLogin', component:CertificateLoginComponent},
+      {path:'unitview', component:ViewUnitComponent},
     ]
   },
 

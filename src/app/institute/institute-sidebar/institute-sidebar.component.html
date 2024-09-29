@@ -69,7 +69,7 @@
             <span>Dues</span>
         </button>
 
-    
+
 
         <button mat-button class="menu-button" [routerLink]="['instquery']" routerLinkActive="active">
             <mat-icon>equalizer</mat-icon>
@@ -116,6 +116,11 @@
             </button>
 
             <div id="dropdown_study">
+                <button mat-button class="master_icon" [routerLink]="['unitview']" routerLinkActive="active">
+                    <mat-icon>notes</mat-icon>
+                    <span>Course Unit</span>
+                </button>
+
                 <button mat-button class="master_icon" [routerLink]="['instbook']" routerLinkActive="active">
                     <mat-icon>book</mat-icon>
                     <span>Book</span>
@@ -135,6 +140,7 @@
                     <mat-icon>question_answer</mat-icon>
                     <span>Question Bank</span>
                 </button>
+
             </div>
         </div>
     </div>

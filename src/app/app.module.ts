@@ -135,6 +135,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { LoginanotheComponent } from './admin/loginanothe/loginanothe.component';
 import { CertificateLoginComponent } from './institute/certificate-login/certificate-login.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { AddunitComponent } from './institute/Unit/addunit/addunit.component';
+import { ViewUnitComponent } from './institute/Unit/view-unit/view-unit.component';
 
 @NgModule({
   declarations: [
@@ -246,6 +248,8 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     LiveClassComponent,
     LoginanotheComponent,
     CertificateLoginComponent,
+    AddunitComponent,
+    ViewUnitComponent,
   ],
   imports: [
     BrowserModule,
