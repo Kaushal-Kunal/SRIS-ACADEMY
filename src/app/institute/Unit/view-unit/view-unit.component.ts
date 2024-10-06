@@ -111,7 +111,9 @@ export class ViewUnitComponent implements OnInit {
       data: row,
     });
   }
-  inst_book_delete(row: any) {
+
+
+  onDelete(row: any) {
     const dialogRef = this.dailog.open(ConfirmBoxComponent, {
       data: this.deletevalue,
     });
@@ -119,12 +121,12 @@ export class ViewUnitComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (this.deletevalue == result) {
         const deldata = new FormData();
-        deldata.append('inst_book_id', row.inst_book_id);
-        this.service.inst_book_delete(deldata).subscribe(
+        deldata.append('unit_id', row.unit_id);
+        this.service.unit_delete(deldata).subscribe(
           (res: any) => {
             console.log(res)
-            this.popup.success({ detail: 'Success', summary: 'Course Deleted', })
-            this.router.navigate(['/institutehome/instbook']);
+            this.popup.success({ detail: 'Success', summary: 'Unit Deleted', })
+            this.router.navigate(['/institutehome/unitview']);
           }
         )
       }

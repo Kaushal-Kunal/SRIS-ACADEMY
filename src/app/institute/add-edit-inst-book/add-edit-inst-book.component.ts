@@ -24,7 +24,7 @@ export class AddEditInstBookComponent implements OnInit {
   image_url: any = ""
   image_select: any = null
   url: string = ''
-
+  unitdata: any
   constructor(
     private popup: NgToastService,
     private fb: FormBuilder,
@@ -41,10 +41,10 @@ export class AddEditInstBookComponent implements OnInit {
     this.inst_id_for_inst_login = this.login.inst_id
 
     this.service.imgBaseUrl.subscribe(
-      (rs:any)=>{
+      (rs: any) => {
         const url = rs
         this.url = rs
-        this.image_url = rs+'doc.png'
+        this.image_url = rs + 'doc.png'
       }
     )
   }
@@ -62,6 +62,7 @@ export class AddEditInstBookComponent implements OnInit {
       inst_book_img: [''],
       inst_book_description: [''],
       course_id_fk: ['', Validators.required],
+      unit_id_fk: ['', Validators.required],
       admin_id_fk: ['', Validators.required]
     })
 
@@ -71,11 +72,14 @@ export class AddEditInstBookComponent implements OnInit {
       this.inst_book_form.controls['inst_book_title'].setValue(this.edit_inst_book.inst_book_title);
       this.inst_book_form.controls['inst_book_img'].setValue(this.edit_inst_book.inst_book_img);
       this.inst_book_form.controls['inst_book_description'].setValue(this.edit_inst_book.inst_book_description);
+      this.inst_book_form.controls['unit_id_fk'].setValue(this.edit_inst_book.unit_id_fk);
       this.inst_book_form.controls['course_id_fk'].setValue(this.edit_inst_book.course_id);
       this.inst_book_form.controls['admin_id_fk'].setValue(this.edit_inst_book.admin_id_fk);
       this.image_url = this.url + this.edit_inst_book.inst_book_img
       this.image_select = this.edit_inst_book.inst_book_img
     }
+
+
   }
   inst_book_btn() {
     const formdata = new FormData();
@@ -84,6 +88,7 @@ export class AddEditInstBookComponent implements OnInit {
     formdata.append('inst_book_img', this.image_url)
     formdata.append('inst_book_description', this.inst_book_form.get('inst_book_description')?.value);
     formdata.append('course_id_fk', this.inst_book_form.get('course_id_fk')?.value);
+    formdata.append('unit_id_fk', this.inst_book_form.get('unit_id_fk')?.value);
     formdata.append('institute_id_fk', this.inst_id_for_inst_login);
     formdata.append('admin_id_fk', this.inst_book_form.get('admin_id_fk')?.value);
     if (!this.edit_inst_book) {
@@ -108,6 +113,21 @@ export class AddEditInstBookComponent implements OnInit {
       this.updateInstBook()
     }
   }
+
+  get_unit(course_id: any) {
+      console.log(course_id);
+    const instformdata = new FormData()
+    instformdata.append('course_id_fk', course_id)
+
+    this.service.get_unit_by_course(instformdata).subscribe(
+      (res: any) => {
+        console.log(res);
+        this.unitdata = res.data
+      }
+    )
+  }
+
+  
   updateInstBook() {
     console.log(this.inst_book_form.value)
     const updatedata = new FormData();
@@ -116,6 +136,7 @@ export class AddEditInstBookComponent implements OnInit {
     updatedata.append('inst_book_img', this.image_url)
     updatedata.append('inst_book_description', this.inst_book_form.get('inst_book_description')?.value);
     updatedata.append('course_id_fk', this.inst_book_form.get('course_id_fk')?.value);
+    updatedata.append('unit_id_fk', this.inst_book_form.get('unit_id_fk')?.value);
     updatedata.append('institute_id_fk', this.inst_id_for_inst_login);
     updatedata.append('admin_id_fk', this.inst_book_form.get('admin_id_fk')?.value);
     this.service.put_inst_book(updatedata).subscribe({
@@ -132,7 +153,7 @@ export class AddEditInstBookComponent implements OnInit {
     })
   }
 
-  OnUpload(files: any) {    
+  OnUpload(files: any) {
     this.image_url = files[0]
-}
+  }
 }

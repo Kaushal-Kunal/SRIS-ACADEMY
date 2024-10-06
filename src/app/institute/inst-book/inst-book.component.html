@@ -23,6 +23,11 @@
         <td mat-cell *matCellDef="let row"> {{row.course_name}}</td>
       </ng-container>
 
+      <ng-container matColumnDef="unit_id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Unit </th>
+        <td mat-cell *matCellDef="let row"> {{row.unitname}}</td>
+      </ng-container>
+
       <ng-container matColumnDef="inst_book_title">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Book Title</th>
         <td mat-cell *matCellDef="let row"> {{row.inst_book_title}}</td>

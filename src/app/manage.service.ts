@@ -626,7 +626,18 @@ export class ManageService {
   get_unit_by_inst_id(data: any) {
     return this.http.post<any>(this.baseUrl + 'get_unit_by_inst_id.php', data);
   }
+  get_unit_by_course(data: any) {
+    return this.http.post<any>(this.baseUrl + 'get_unit_by_course.php', data);
+  }
   unit_insert(data: any) {
+    console.log(data);
+
     return this.http.post<any>(this.baseUrl + 'unit_insert.php', data);
+  }
+  unit_update(data: any) {
+    return this.http.put<any>(this.baseUrl + 'unit_update.php', data);
+  }
+  unit_delete(data: any) {
+    return this.http.post<any>(this.baseUrl + 'unit_delete.php', data);
   }
 } 

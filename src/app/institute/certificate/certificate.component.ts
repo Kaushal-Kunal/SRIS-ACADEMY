@@ -58,12 +58,12 @@ export class CertificateComponent implements OnInit {
     //   }
     // )
 
-    this.isLogin = localStorage.getItem('isCertificateLogin')
-    console.log(this.isLogin);
-    if (this.isLogin !== 'True') {
-      this.router.navigate(['/institutehome/certificateLogin'])
-      return
-    }
+    // this.isLogin = localStorage.getItem('isCertificateLogin')
+    // console.log(this.isLogin);
+    // if (this.isLogin !== 'True') {
+    //   this.router.navigate(['/institutehome/certificateLogin'])
+    //   return
+    // }
 
 
     const fromdata = new FormData()

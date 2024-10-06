@@ -4,7 +4,6 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
 import { ManageService } from 'src/app/manage.service';
-import { AddEditBatchComponent } from '../../add-edit-batch/add-edit-batch.component';
 
 @Component({
   selector: 'app-addunit',
@@ -29,8 +28,8 @@ export class AddunitComponent implements OnInit {
     private fb: FormBuilder,
     private service: ManageService,
     private router: Router,
-    private matref: MatDialogRef<AddEditBatchComponent>,
-    @Inject(MAT_DIALOG_DATA) public edit_quiz: any
+    private matref: MatDialogRef<AddunitComponent>,
+    @Inject(MAT_DIALOG_DATA) public edit_unit: any
   ) {
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
@@ -41,7 +40,10 @@ export class AddunitComponent implements OnInit {
     this.inst_id_for_inst_login = this.login.inst_id
 
     alert(this.login.inst_id)
-    this.service.get_course_by_inst_id(this.login.inst_id).subscribe(
+    const courseform = new FormData()
+    courseform.append('inst_id', this.login.inst_id)
+
+    this.service.get_course_by_inst_id(courseform).subscribe(
       (res: any) => {
         console.log(res);
         this.course_data = res.data
@@ -50,7 +52,7 @@ export class AddunitComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.edit_quiz)
+    console.log(this.edit_unit)
     this.quiz_form = this.fb.group({
       unit_id: ['',],
       unitname: ['', Validators.required],
@@ -62,66 +64,57 @@ export class AddunitComponent implements OnInit {
 
     this.quiz_form.controls['institute_id_fk'].setValue(this.inst_id_for_inst_login);
 
-    if (this.edit_quiz.quiz_id) {
+    if (this.edit_unit.unit_id) {
       this.actionBtn = "Update";
-      this.quiz_form.controls['quiz_id'].setValue(this.edit_quiz.quiz_id);
-      this.quiz_form.controls['quiz_no'].setValue(this.edit_quiz.quiz_no);
-      this.quiz_form.controls['quiz_question'].setValue(this.edit_quiz.quiz_question);
-      this.quiz_form.controls['quiz_option_a'].setValue(this.edit_quiz.quiz_option_a);
-      this.quiz_form.controls['quiz_option_b'].setValue(this.edit_quiz.quiz_option_b);
-      this.quiz_form.controls['quiz_option_c'].setValue(this.edit_quiz.quiz_option_c);
-      this.quiz_form.controls['quiz_option_d'].setValue(this.edit_quiz.quiz_option_d);
-      this.quiz_form.controls['quiz_answer'].setValue(this.edit_quiz.quiz_answer);
-      this.quiz_form.controls['quiz_description'].setValue(this.edit_quiz.quiz_description);
-      this.quiz_form.controls['course_id_fk'].setValue(this.edit_quiz.course_id);
-      this.quiz_form.controls['institute_id_fk'].setValue(this.edit_quiz.inst_id);
-      this.quiz_form.controls['admin_id_fk'].setValue(this.edit_quiz.admin_id_fk);
+      this.quiz_form.controls['unit_id'].setValue(this.edit_unit.unit_id);
+      this.quiz_form.controls['unitname'].setValue(this.edit_unit.unitname);
+      this.quiz_form.controls['unitdesc'].setValue(this.edit_unit.unitdesc);
+      this.quiz_form.controls['course_id_fk'].setValue(this.edit_unit.course_id);
+      this.quiz_form.controls['institute_id_fk'].setValue(this.edit_unit.inst_id);
+      this.quiz_form.controls['admin_id_fk'].setValue(this.edit_unit.admin_id_fk);
     }
+
     else {
-      this.quiz_form.controls['course_id_fk'].setValue(this.edit_quiz);
-      const fromdata = new FormData()
-      fromdata.append('course_id', this.edit_quiz)
-      fromdata.append('inst_id', this.inst_id)
-      this.service.get_quiz_no_inst_course(fromdata).subscribe(
+
+    }
+
+  }
+
+  onSubmit() {
+    if (!this.edit_unit) {
+      this.onAddUnit()
+    } else {
+      this.unitUpdate()
+    }
+  }
+
+  onAddUnit() {
+    if (this.quiz_form.valid)
+      this.service.unit_insert(this.quiz_form.value).subscribe(
         (res: any) => {
-          // console.log(res.data.length + 1) 
-          this.quiz_form.controls['quiz_no'].setValue(res.data.length + 1);
+          console.log(res)
+          this.matref.close();
+          console.log(this.quiz_form.value)
+          this.popup.success({ detail: 'Success', summary: 'Quiz Saved', })
+          this.router.navigate(['/institutehome/unitview'], this.edit_unit)
+        },
+        (error: any) => {
+          console.log(error)
+          this.popup.error({ detail: 'Unsuccess', summary: 'Quiz Not Saved', })
         }
       )
-    }
 
   }
 
-  quiz_btn() {
+
+  unitUpdate() {
     console.log(this.quiz_form.value)
-    if (!this.edit_quiz.quiz_id) {
-      if (this.quiz_form.valid)
-        this.service.unit_insert(this.quiz_form.value).subscribe(
-          (res: any) => {
-            console.log(res)
-            this.matref.close();
-            console.log(this.quiz_form.value)
-            this.popup.success({ detail: 'Success', summary: 'Quiz Saved', })
-            this.router.navigate(['/institutehome/instquiz'], this.edit_quiz)
-          },
-          (error: any) => {
-            console.log(error)
-            this.popup.error({ detail: 'Unsuccess', summary: 'Quiz Not Saved', })
-          }
-        )
-    }
-    else {
-      this.quizUpdate()
-    }
-  }
-  quizUpdate() {
-    console.log(this.quiz_form.value)
-    this.service.put_quiz(this.quiz_form.value).subscribe({
+    this.service.unit_update(this.quiz_form.value).subscribe({
       next: (res: any) => {
         console.log(res)
         this.matref.close();
-        this.popup.success({ detail: 'Success', summary: 'Quiz Updated' })
-        this.router.navigate(['/institutehome/instquiz'], this.quiz_form.get('course_id_fk')?.value)
+        this.popup.success({ detail: 'Success', summary: 'unit Updated' })
+        this.router.navigate(['/institutehome/unitview'], this.quiz_form.get('course_id_fk')?.value)
       },
       error: (error: any) => {
         console.log(error)
@@ -131,28 +124,5 @@ export class AddunitComponent implements OnInit {
     }
     )
   }
-  quiz_data_reset() {
-    this.quiz_form.controls['quiz_question'].reset()
-    this.quiz_form.controls['quiz_option_a'].reset()
-    this.quiz_form.controls['quiz_option_b'].reset()
-    this.quiz_form.controls['quiz_option_c'].reset()
-    this.quiz_form.controls['quiz_option_d'].reset()
-    this.quiz_form.controls['quiz_answer'].reset()
-    this.quiz_form.controls['quiz_description'].reset()
-  }
 
-  // onCourse(event:any){
-  //   console.log(this.inst_id)
-  //   console.log(event)
-  //   const fromdata  = new FormData()
-  //   fromdata.append('course_id', event)
-  //   fromdata.append('inst_id', this.inst_id)
-  //   this.service.get_quiz_no_inst_course(fromdata).subscribe(
-  //     (res:any)=>{
-  //       // console.log(res.data.length + 1) 
-  //       this.quiz_form.controls['quiz_no'].setValue(res.data.length + 1);
-
-  //     }
-  //   )
-  // }
 }

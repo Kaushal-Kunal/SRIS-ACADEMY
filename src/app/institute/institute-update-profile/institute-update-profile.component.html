@@ -8,23 +8,23 @@
 
         <mat-form-field appearance="fill">
             <mat-label>Name</mat-label>
-            <input matInput formControlName="inst_name" readonly>
+            <input matInput formControlName="inst_name" >
         </mat-form-field>
 
         <mat-form-field appearance="fill">
             <mat-label>Owner Name</mat-label>
-            <input matInput formControlName="inst_owner_name" readonly>
+            <input matInput formControlName="inst_owner_name" >
         </mat-form-field>
 
         <mat-form-field appearance="fill">
             <mat-label>Whatsapp Number</mat-label>
             <input matInput type="number" formControlName="inst_whatsapp_no" onkeypress="return this.value.length < 10;"
-                oninput="if(this.value.length>=10) { this.value = this.value.slice(0,10); }" readonly>
+                oninput="if(this.value.length>=10) { this.value = this.value.slice(0,10); }" >
         </mat-form-field>
 
         <mat-form-field appearance="fill">
             <mat-label>Email</mat-label>
-            <input type="email" matInput formControlName="inst_email" readonly>
+            <input type="email" matInput formControlName="inst_email" >
         </mat-form-field>
 
         <mat-form-field appearance="fill">
@@ -107,8 +107,7 @@
         <input type="number" readonly formControlName="inst_id" hidden>
 
         <div class="submit">
-            <button mat-raised-button color="primary" (click)="update_profile()"
-                [disabled]="!InstForm.valid">{{actionBtn}}</button>
+            <button mat-raised-button color="primary" (click)="update_profile()" >{{actionBtn}}</button>
         </div>
     </form>
 </div>
