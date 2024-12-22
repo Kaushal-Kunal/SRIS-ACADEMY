@@ -14,7 +14,7 @@ import { ConfirmBoxComponent } from '../confirm-box/confirm-box.component';
   styleUrls: ['./inst-question-bank.component.css']
 })
 export class InstQuestionBankComponent implements OnInit {
-  displayedColumns: string[] = ['inst_question_bank_id', 'course_id_fk', 'inst_question_bank_title','inst_question_bank_description','inst_question_bank_img','action'];
+  displayedColumns: string[] = ['inst_question_bank_id', 'course_id_fk', 'unit_id_fk', 'inst_question_bank_title', 'inst_question_bank_description', 'inst_question_bank_img', 'action'];
   dataSource = new MatTableDataSource();
   count_inst_question_bank: number = 0;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -50,7 +50,7 @@ export class InstQuestionBankComponent implements OnInit {
     console.log("inst" + this.inst_id_for_inst_login)
 
     this.service.imgBaseUrl.subscribe(
-      (res:any)=>{
+      (res: any) => {
         this.imgUrl = res
       }
     )
@@ -66,7 +66,7 @@ export class InstQuestionBankComponent implements OnInit {
     if (this.inst_id_for_std) {
       this.get_question_bank_by_inst_id(this.inst_id_for_std)
       this.action_btn = true
-      this.displayedColumns = ['inst_question_bank_id', 'course_id_fk', 'inst_question_bank_title','inst_question_bank_description', 'inst_question_bank_img',];
+      this.displayedColumns = ['inst_question_bank_id', 'course_id_fk', 'inst_question_bank_title', 'inst_question_bank_description', 'inst_question_bank_img',];
       const instformdata = new FormData()
       instformdata.append('inst_id', this.inst_id)
       this.service.get_question_bank_by_inst_id(instformdata).subscribe(
@@ -125,7 +125,7 @@ export class InstQuestionBankComponent implements OnInit {
           }
         )
       }
-      else {}
+      else { }
     });
   }
 

@@ -15,7 +15,7 @@ import { ConfirmBoxComponent } from '../confirm-box/confirm-box.component';
 })
 
 export class InstQuizComponent implements OnInit {
-  displayedColumns: string[] = ['quiz_id', 'quiz_question', 'quiz_option_a', 'quiz_option_b', 'quiz_option_c', 'quiz_option_d', 'quiz_answer', 'quiz_description', 'action'];
+  displayedColumns: string[] = ['quiz_id', 'unit_id_fk', 'quiz_question', 'quiz_option_a', 'quiz_option_b', 'quiz_option_c', 'quiz_option_d', 'action'];
   dataSource = new MatTableDataSource();
   count_quiz: number = 0;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -27,7 +27,7 @@ export class InstQuizComponent implements OnInit {
   inst_id_for_inst_login: any;
   inst_id: any;
   course_data: any;
-  sub_name: string="Quiz";
+  sub_name: string = "Quiz";
   course: any
   deletevalue: any = 1
 
@@ -99,7 +99,7 @@ export class InstQuizComponent implements OnInit {
           }
         )
       }
-      else {}
+      else { }
     });
   }
 

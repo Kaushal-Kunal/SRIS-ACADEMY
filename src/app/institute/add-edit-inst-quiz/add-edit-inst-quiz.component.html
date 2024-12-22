@@ -6,32 +6,47 @@
     <form [formGroup]="quiz_form">
 
         <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Question</mat-label>
-            <input matInput formControlName="quiz_question" placeholder="Enter question">
+            <mat-label>Course</mat-label>
+            <mat-select formControlName="course_id_fk" (valueChange)="get_unit($event)">
+                <mat-option *ngFor="let course of course_data"
+                    [value]="course.course_id">{{course.course_name}}</mat-option>
+            </mat-select>
         </mat-form-field>
 
         <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Unit</mat-label>
+            <mat-select formControlName="unit_id_fk">
+                <mat-option *ngFor="let unit of   unitdata" [value]="unit.unit_id">{{unit.unitname}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="description" appearance="fill">
+            <mat-label>Question</mat-label>
+            <textarea matInput formControlName="quiz_question" placeholder="Enter question"></textarea>
+        </mat-form-field>
+
+        <mat-form-field class="description" appearance="fill">
             <mat-label>Option A</mat-label>
             <input matInput formControlName="quiz_option_a" placeholder="Enter option a">
         </mat-form-field>
 
-        <mat-form-field class="example-full-width" appearance="fill">
+        <mat-form-field class="description" appearance="fill">
             <mat-label>Option B</mat-label>
             <input matInput formControlName="quiz_option_b" placeholder="Enter option b">
         </mat-form-field>
 
-        <mat-form-field class="example-full-width" appearance="fill">
+        <mat-form-field class="description" appearance="fill">
             <mat-label>Option C</mat-label>
             <input matInput formControlName="quiz_option_c" placeholder="Enter option c">
         </mat-form-field>
 
-        <mat-form-field class="example-full-width" appearance="fill">
+        <mat-form-field class="description" appearance="fill">
             <mat-label>Option D</mat-label>
             <input matInput formControlName="quiz_option_d" placeholder="Enter option d">
         </mat-form-field>
 
 
-        <mat-form-field appearance="fill" class="example-full-width">
+        <mat-form-field appearance="fill" class="description">
             <mat-label>Answer</mat-label>
             <mat-select formControlName="quiz_answer">
                 <mat-option value="A">A</mat-option>

@@ -25,6 +25,7 @@ export class AddEditInstNotesComponent implements OnInit {
   image_url: any = ""
   image_select: any = null
   url: string = ''
+  unitdata: any
 
   constructor(
     private popup: NgToastService,
@@ -42,13 +43,14 @@ export class AddEditInstNotesComponent implements OnInit {
     this.inst_id_for_inst_login = this.login.inst_id
 
     this.service.imgBaseUrl.subscribe(
-      (rs:any)=>{
+      (rs: any) => {
         const url = rs
         this.url = rs
-        this.image_url = rs+'doc.png'
+        this.image_url = rs + 'doc.png'
       }
     )
   }
+
   ngOnInit(): void {
     const formdata = new FormData()
     formdata.append("inst_id", this.inst_id_for_inst_login)
@@ -63,6 +65,7 @@ export class AddEditInstNotesComponent implements OnInit {
       inst_notes_img: [''],
       inst_notes_description: [''],
       course_id_fk: ['', Validators.required],
+      unit_id_fk: ['', Validators.required],
       admin_id_fk: ['', Validators.required]
     })
 
@@ -73,6 +76,7 @@ export class AddEditInstNotesComponent implements OnInit {
       this.inst_notes_form.controls['inst_notes_img'].setValue(this.edit_inst_notes.inst_notes_img);
       this.inst_notes_form.controls['inst_notes_description'].setValue(this.edit_inst_notes.inst_notes_description);
       this.inst_notes_form.controls['course_id_fk'].setValue(this.edit_inst_notes.course_id);
+      this.inst_notes_form.controls['unit_id_fk'].setValue(this.edit_inst_notes.unit_id_fk);
       this.inst_notes_form.controls['admin_id_fk'].setValue(this.edit_inst_notes.admin_id_fk);
       this.image_url = this.url + this.edit_inst_notes.inst_notes_img
       this.image_select = this.edit_inst_notes.inst_notes_img
@@ -88,6 +92,7 @@ export class AddEditInstNotesComponent implements OnInit {
     formdata.append('course_id_fk', this.inst_notes_form.get('course_id_fk')?.value);
     formdata.append('institute_id_fk', this.inst_id_for_inst_login);
     formdata.append('admin_id_fk', this.inst_notes_form.get('admin_id_fk')?.value);
+    formdata.append('unit_id_fk', this.inst_notes_form.get('unit_id_fk')?.value);
     if (!this.edit_inst_notes) {
       if (this.inst_notes_form.valid) {
         this.service.post_inst_notes(formdata).subscribe(
@@ -118,6 +123,7 @@ export class AddEditInstNotesComponent implements OnInit {
     updatedata.append('course_id_fk', this.inst_notes_form.get('course_id_fk')?.value);
     updatedata.append('institute_id_fk', this.inst_id_for_inst_login);
     updatedata.append('admin_id_fk', this.inst_notes_form.get('admin_id_fk')?.value);
+    updatedata.append('unit_id_fk', this.inst_notes_form.get('unit_id_fk')?.value);
     this.service.put_inst_notes(updatedata).subscribe({
       next: (res: any) => {
         console.log(res)
@@ -134,7 +140,20 @@ export class AddEditInstNotesComponent implements OnInit {
   }
 
 
-  OnUpload(files: any) {    
+  OnUpload(files: any) {
     this.image_url = files[0]
-}
+  }
+
+  get_unit(course_id: any) {
+    console.log(course_id);
+    const instformdata = new FormData()
+    instformdata.append('course_id_fk', course_id)
+
+    this.service.get_unit_by_course(instformdata).subscribe(
+      (res: any) => {
+        console.log(res);
+        this.unitdata = res.data
+      }
+    )
+  }
 }

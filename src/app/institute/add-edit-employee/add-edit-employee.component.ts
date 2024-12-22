@@ -55,6 +55,7 @@ export class AddEditEmployeeComponent implements OnInit {
     this.empForm = this.fb.group({
       emp_id: ['',],
       emp_name: ['', Validators.required],
+      emp_designation: ['', Validators.required],
       emp_email: ['', Validators.required],
       emp_account_no: ['', Validators.required],
       emp_whatsapp: ['', Validators.required],
@@ -74,6 +75,7 @@ export class AddEditEmployeeComponent implements OnInit {
       this.actionBtn = "Update";
       this.empForm.controls['emp_id'].setValue(Number(this.editData.emp_id));
       this.empForm.controls['emp_name'].setValue(this.editData.emp_name);
+      this.empForm.controls['emp_designation'].setValue(this.editData.emp_designation);
       this.empForm.controls['emp_whatsapp'].setValue(this.editData.emp_whatsapp);
       this.empForm.controls['emp_email'].setValue(this.editData.emp_email);
       this.empForm.controls['emp_password'].setValue(this.editData.emp_password);
@@ -95,6 +97,7 @@ export class AddEditEmployeeComponent implements OnInit {
     console.log(this.empForm.value)
     const formdata = new FormData();
     formdata.append('emp_name', this.empForm.get('emp_name')?.value)
+    formdata.append('emp_designation', this.empForm.get('emp_designation')?.value)
     formdata.append('emp_whatsapp', this.empForm.get('emp_whatsapp')?.value)
     formdata.append('emp_email', this.empForm.get('emp_email')?.value)
     formdata.append('emp_password', this.empForm.get('emp_password')?.value)
@@ -131,6 +134,7 @@ export class AddEditEmployeeComponent implements OnInit {
     const formdataedit = new FormData();
     formdataedit.append('emp_id', this.empForm.get('emp_id')?.value)
     formdataedit.append('emp_name', this.empForm.get('emp_name')?.value)
+    formdataedit.append('emp_designation', this.empForm.get('emp_designation')?.value)
     formdataedit.append('emp_aadhar_no', this.empForm.get('emp_aadhar_no')?.value)
     formdataedit.append('emp_ac_holder_name', this.empForm.get('emp_ac_holder_name')?.value)
     formdataedit.append('emp_account_no', this.empForm.get('emp_account_no')?.value)

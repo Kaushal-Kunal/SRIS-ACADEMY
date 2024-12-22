@@ -39,7 +39,6 @@ export class AddunitComponent implements OnInit {
     this.inst_id = this.login.inst_id
     this.inst_id_for_inst_login = this.login.inst_id
 
-    alert(this.login.inst_id)
     const courseform = new FormData()
     courseform.append('inst_id', this.login.inst_id)
 
@@ -81,7 +80,7 @@ export class AddunitComponent implements OnInit {
   }
 
   onSubmit() {
-    if (!this.edit_unit) {
+    if (!this.edit_unit.unit_id) {
       this.onAddUnit()
     } else {
       this.unitUpdate()

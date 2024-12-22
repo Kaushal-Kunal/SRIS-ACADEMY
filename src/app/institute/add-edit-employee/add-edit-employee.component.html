@@ -4,7 +4,7 @@
 </mat-toolbar>
 <div id="wrapper">
     <form [formGroup]="empForm">
-        
+
         <div class="user_image" (click)="image.click()">
             <img alt="image" [src]="image_url">
             <input class="d-none" type="file" accept=".jpg,.png,.jpeg," #image (change)="onimage(image.files)">
@@ -17,8 +17,14 @@
         </mat-form-field>
 
         <mat-form-field appearance="fill">
+            <mat-label>Designation</mat-label>
+            <input formControlName="emp_designation" matInput placeholder="Enter designation">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
             <mat-label>WhatsApp No</mat-label>
-            <input type="number" formControlName="emp_whatsapp" matInput onkeypress="return this.value.length < 10;" placeholder="Enter whatsapp no">
+            <input type="number" formControlName="emp_whatsapp" matInput onkeypress="return this.value.length < 10;"
+                placeholder="Enter whatsapp no">
         </mat-form-field>
 
         <mat-form-field appearance="fill">
@@ -62,7 +68,7 @@
             <mat-label>Address</mat-label>
             <textarea formControlName="emp_address" matInput placeholder="Enter address"></textarea>
         </mat-form-field>
-        
+
         <input type="number" readonly [ngModel]="admin_id" formControlName="admin_id_fk" hidden>
         <div class="submit">
             <button mat-raised-button color="warn" (click)="employee_data_reset()">Reset</button>&nbsp;&nbsp;&nbsp;

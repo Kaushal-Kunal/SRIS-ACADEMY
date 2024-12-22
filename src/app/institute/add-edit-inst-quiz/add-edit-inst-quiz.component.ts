@@ -21,12 +21,13 @@ export class AddEditInstQuizComponent implements OnInit {
   inst_id: any;
   login: any;
   inst_id_for_inst_login: any;
+  unitdata: any
 
   constructor(
-    private popup:NgToastService,
+    private popup: NgToastService,
     private fb: FormBuilder,
     private service: ManageService,
-    private router:Router,
+    private router: Router,
     private matref: MatDialogRef<AddEditInstQuizComponent>,
     @Inject(MAT_DIALOG_DATA) public edit_quiz: any
   ) {
@@ -40,6 +41,14 @@ export class AddEditInstQuizComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const formdata = new FormData()
+    formdata.append("inst_id", this.inst_id)
+    this.service.get_course_by_inst_id(formdata).subscribe(
+      (std_res: any) => {
+        this.course_data = std_res.data
+      }
+    )
+
     console.log(this.edit_quiz)
     this.quiz_form = this.fb.group({
       quiz_id: ['',],
@@ -52,6 +61,7 @@ export class AddEditInstQuizComponent implements OnInit {
       quiz_answer: ['', Validators.required],
       quiz_description: [''],
       course_id_fk: ['', Validators.required],
+      unit_id_fk: ['', Validators.required],
       institute_id_fk: [''],
       admin_id_fk: ['', Validators.required]
     })
@@ -70,16 +80,17 @@ export class AddEditInstQuizComponent implements OnInit {
       this.quiz_form.controls['quiz_answer'].setValue(this.edit_quiz.quiz_answer);
       this.quiz_form.controls['quiz_description'].setValue(this.edit_quiz.quiz_description);
       this.quiz_form.controls['course_id_fk'].setValue(this.edit_quiz.course_id);
+      this.quiz_form.controls['unit_id_fk'].setValue(this.edit_quiz.unit_id_fk);
       this.quiz_form.controls['institute_id_fk'].setValue(this.edit_quiz.inst_id);
       this.quiz_form.controls['admin_id_fk'].setValue(this.edit_quiz.admin_id_fk);
     }
-    else{
+    else {
       this.quiz_form.controls['course_id_fk'].setValue(this.edit_quiz);
-      const fromdata  = new FormData()
+      const fromdata = new FormData()
       fromdata.append('course_id', this.edit_quiz)
       fromdata.append('inst_id', this.inst_id)
       this.service.get_quiz_no_inst_course(fromdata).subscribe(
-        (res:any)=>{
+        (res: any) => {
           // console.log(res.data.length + 1) 
           this.quiz_form.controls['quiz_no'].setValue(res.data.length + 1);
         }
@@ -97,7 +108,7 @@ export class AddEditInstQuizComponent implements OnInit {
             this.matref.close();
             console.log(this.quiz_form.value)
             this.popup.success({ detail: 'Success', summary: 'Quiz Saved', })
-            this.router.navigate(['/institutehome/instquiz'],this.edit_quiz)
+            this.router.navigate(['/institutehome/instquiz'], this.edit_quiz)
           },
           (error: any) => {
             console.log(error)
@@ -109,6 +120,20 @@ export class AddEditInstQuizComponent implements OnInit {
       this.quizUpdate()
     }
   }
+
+  get_unit(course_id: any) {
+    console.log(course_id);
+    const instformdata = new FormData()
+    instformdata.append('course_id_fk', course_id)
+
+    this.service.get_unit_by_course(instformdata).subscribe(
+      (res: any) => {
+        console.log(res);
+        this.unitdata = res.data
+      }
+    )
+  }
+
   quizUpdate() {
     console.log(this.quiz_form.value)
     this.service.put_quiz(this.quiz_form.value).subscribe({
@@ -116,17 +141,17 @@ export class AddEditInstQuizComponent implements OnInit {
         console.log(res)
         this.matref.close();
         this.popup.success({ detail: 'Success', summary: 'Quiz Updated' })
-        this.router.navigate(['/institutehome/instquiz'],this.quiz_form.get('course_id_fk')?.value)
+        this.router.navigate(['/institutehome/instquiz'], this.quiz_form.get('course_id_fk')?.value)
       },
       error: (error: any) => {
         console.log(error)
-        this.popup.error({ detail: 'Unsuccess', summary: 'Quiz Not Updated'})
+        this.popup.error({ detail: 'Unsuccess', summary: 'Quiz Not Updated' })
       }
 
     }
     )
   }
-  quiz_data_reset(){
+  quiz_data_reset() {
     this.quiz_form.controls['quiz_question'].reset()
     this.quiz_form.controls['quiz_option_a'].reset()
     this.quiz_form.controls['quiz_option_b'].reset()

@@ -18,8 +18,13 @@
         </ng-container>
 
         <ng-container matColumnDef="emp_name">
-            <th class="trth" mat-header-cell *matHeaderCellDef mat-sort-header>Employee Name</th>
+            <th class="trth" mat-header-cell *matHeaderCellDef mat-sort-header> Name</th>
             <td class="data" mat-cell *matCellDef="let row">{{row.emp_name}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="emp_designation">
+            <th class="trth" mat-header-cell *matHeaderCellDef mat-sort-header>Designation</th>
+            <td class="data" mat-cell *matCellDef="let row">{{row.emp_designation}}</td>
         </ng-container>
 
         <ng-container matColumnDef="emp_whatsapp">

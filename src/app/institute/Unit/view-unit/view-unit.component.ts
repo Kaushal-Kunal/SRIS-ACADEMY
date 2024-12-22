@@ -100,16 +100,30 @@ export class ViewUnitComponent implements OnInit {
     )
   }
 
-  add_batch(): any {
-    this.dailog.open(AddunitComponent, {
-      disableClose: true
+  add_batch(){
+    const dilogref = this.dailog.open(AddunitComponent, {
+      disableClose: true,
+      data: 1,
     });
+
+
+    dilogref.afterClosed().subscribe(result => {
+      if (1 == result) {
+        console.log('yes  here add one item');
+        // this.get_book_by_inst_id(this.inst_id_for_inst_login)
+
+      }
+      else { }
+    });
+
+
   }
 
   batch_edit(row: any) {
     this.dailog.open(AddunitComponent, {
       data: row,
     });
+
   }
 
 

@@ -7,16 +7,23 @@
 
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Course</mat-label>
-            <mat-select formControlName="course_id_fk">
+            <mat-select formControlName="course_id_fk" (valueChange)="get_unit($event)">
                 <mat-option *ngFor="let course of course_data"
                     [value]="course.course_id">{{course.course_name}}</mat-option>
             </mat-select>
         </mat-form-field>
 
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Unit</mat-label>
+            <mat-select formControlName="unit_id_fk">
+                <mat-option *ngFor="let unit of   unitdata" [value]="unit.unit_id">{{unit.unitname}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+
         <div class="user_image">
-                Uplodad PDF
-                <input  type="file" accept=".pdf" #image
-                    (change)="OnUpload(image.files)">
+            Uplodad PDF
+            <input type="file" accept=".pdf" #image (change)="OnUpload(image.files)">
         </div><br>
 
         <mat-form-field class="example-full-width" appearance="fill">

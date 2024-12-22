@@ -20,12 +20,12 @@ export class AddEditInstQuestionBankComponent implements OnInit {
   login_deatils: any
   login: any
   institute_id: any
-  image_url: any = ""
+  image_url: any
   image_select: any = null
   url: string = ''
-
+  unitdata: any
   constructor(
-    private popup:NgToastService,
+    private popup: NgToastService,
     private fb: FormBuilder,
     private router: Router,
     private service: ManageService,
@@ -40,10 +40,10 @@ export class AddEditInstQuestionBankComponent implements OnInit {
     this.institute_id = this.login.inst_id
 
     this.service.imgBaseUrl.subscribe(
-      (rs:any)=>{
+      (rs: any) => {
         const url = rs
         this.url = rs
-        this.image_url = rs+'doc.png'
+        this.image_url = rs + 'doc.png'
       }
     )
   }
@@ -58,10 +58,11 @@ export class AddEditInstQuestionBankComponent implements OnInit {
     this.inst_question_bank_form = this.fb.group({
       inst_question_bank_id: ['',],
       inst_question_bank_title: ['', Validators.required],
-      inst_question_bank_img: ['', Validators.required],
+      inst_question_bank_img: [''],
       inst_question_bank_description: [''],
       course_id_fk: ['', Validators.required],
       institute_id_fk: ['', Validators.required],
+      unit_id_fk: ['', Validators.required],
       admin_id_fk: ['', Validators.required]
     })
 
@@ -74,10 +75,12 @@ export class AddEditInstQuestionBankComponent implements OnInit {
       this.inst_question_bank_form.controls['course_id_fk'].setValue(this.edit_inst_question_bank.course_id);
       this.inst_question_bank_form.controls['institute_id_fk'].setValue(this.edit_inst_question_bank.institute_id_fk);
       this.inst_question_bank_form.controls['admin_id_fk'].setValue(this.edit_inst_question_bank.admin_id_fk);
+      this.inst_question_bank_form.controls['unit_id_fk'].setValue(this.edit_inst_question_bank.unit_id_fk);
       this.image_url = this.url + this.edit_inst_question_bank.inst_question_bank_img
       this.image_select = this.edit_inst_question_bank.inst_question_bank_img
     }
   }
+
   inst_question_bank_btn() {
     console.log(this.inst_question_bank_form.value)
     const formdata = new FormData();
@@ -88,8 +91,11 @@ export class AddEditInstQuestionBankComponent implements OnInit {
     formdata.append('course_id_fk', this.inst_question_bank_form.get('course_id_fk')?.value);
     formdata.append('institute_id_fk', this.inst_question_bank_form.get('institute_id_fk')?.value);
     formdata.append('admin_id_fk', this.inst_question_bank_form.get('admin_id_fk')?.value);
+    formdata.append('unit_id_fk', this.inst_question_bank_form.get('unit_id_fk')?.value);
+
     if (!this.edit_inst_question_bank) {
       if (this.inst_question_bank_form.valid) {
+
         this.service.post_inst_question_bank(formdata).subscribe(
           (result: any) => {
             console.log(result)
@@ -100,12 +106,17 @@ export class AddEditInstQuestionBankComponent implements OnInit {
           },
           (error: any) => {
             console.log(error)
-            this.popup.error({ detail: 'Unsuccess', summary: 'Question Not Saved',})
+            this.popup.error({ detail: 'Unsuccess', summary: 'Question Not Saved', })
           }
         )
+      } else {
+        console.log('Please fill all the required fildes');
+
       }
     }
     else {
+      console.log('update');
+
       this.updateInstQuestionBank()
     }
   }
@@ -119,22 +130,38 @@ export class AddEditInstQuestionBankComponent implements OnInit {
     updatedata.append('course_id_fk', this.inst_question_bank_form.get('course_id_fk')?.value);
     updatedata.append('institute_id_fk', this.inst_question_bank_form.get('institute_id_fk')?.value);
     updatedata.append('admin_id_fk', this.inst_question_bank_form.get('admin_id_fk')?.value);
+    updatedata.append('unit_id_fk', this.inst_question_bank_form.get('unit_id_fk')?.value);
     this.service.put_inst_question_bank(updatedata).subscribe({
       next: (res: any) => {
         console.log(res)
         this.matref.close();
-        this.popup.success({ detail: 'Success', summary: 'Question Updated',})
+        this.popup.success({ detail: 'Success', summary: 'Question Updated', })
         this.router.navigate(['/institutehome/instquestionbank'])
 
       },
       error: (error: any) => {
         console.log(error)
-        this.popup.error({ detail: 'Unsuccess', summary: 'Question Not Updated',})
+        this.popup.error({ detail: 'Unsuccess', summary: 'Question Not Updated', })
       }
     })
   }
 
-  OnUpload(files: any) {    
+
+  get_unit(course_id: any) {
+    console.log(course_id);
+    const instformdata = new FormData()
+    instformdata.append('course_id_fk', course_id)
+
+    this.service.get_unit_by_course(instformdata).subscribe(
+      (res: any) => {
+        console.log(res);
+        this.unitdata = res.data
+      }
+    )
+  }
+
+  OnUpload(files: any) {
     this.image_url = files[0]
-}
+  }
+  
 }

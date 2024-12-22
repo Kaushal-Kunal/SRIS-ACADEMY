@@ -15,7 +15,7 @@ import { ConfirmBoxComponent } from '../confirm-box/confirm-box.component';
   styleUrls: ['./employee.component.css']
 })
 export class EmployeeComponent implements OnInit {
-  displayedColumns: string[] = ['slno', 'emp_name', 'emp_whatsapp', 'emp_aadhar_no','emp_ifsc', 'emp_photo', 'emp_address', 'Action'];
+  displayedColumns: string[] = ['slno', 'emp_name','emp_designation', 'emp_whatsapp', 'emp_aadhar_no','emp_ifsc', 'emp_photo', 'emp_address', 'Action'];
   dataSource!: MatTableDataSource<any>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;

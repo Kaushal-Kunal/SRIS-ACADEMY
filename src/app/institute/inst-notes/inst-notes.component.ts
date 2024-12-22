@@ -14,7 +14,7 @@ import { ConfirmBoxComponent } from '../confirm-box/confirm-box.component';
   styleUrls: ['./inst-notes.component.css']
 })
 export class InstNotesComponent implements OnInit {
-  displayedColumns: string[] = ['inst_notes_id', 'course_id_fk', 'inst_notes_title','inst_notes_description', 'inst_notes_img', 'action'];
+  displayedColumns: string[] = ['inst_notes_id', 'course_id_fk', 'unit', 'inst_notes_title', 'inst_notes_description', 'inst_notes_img', 'action'];
   dataSource = new MatTableDataSource();
   count_inst_notes: number = 0;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -50,11 +50,11 @@ export class InstNotesComponent implements OnInit {
     console.log("inst" + this.inst_id_for_inst_login)
 
     this.service.imgBaseUrl.subscribe(
-      (res:any)=>{
+      (res: any) => {
         this.imgUrl = res
       }
     )
-  } 
+  }
 
   ngOnInit(): void {
     if (this.inst_id_for_admin) {
@@ -65,7 +65,7 @@ export class InstNotesComponent implements OnInit {
     }
     if (this.inst_id_for_std) {
       this.action_btn = true
-      this.displayedColumns = ['inst_notes_id', 'course_id_fk', 'inst_notes_title','inst_notes_description','inst_notes_img',];
+      this.displayedColumns = ['inst_notes_id', 'course_id_fk', 'inst_notes_title', 'inst_notes_description', 'inst_notes_img',];
       const instformdata = new FormData()
       instformdata.append('inst_id', this.inst_id_for_std)
       instformdata.append('std_id', this.login.std_id)
