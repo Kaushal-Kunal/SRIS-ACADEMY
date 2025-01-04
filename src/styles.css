@@ -85,3 +85,30 @@
         right: 20px;
     }
 }
+
+
+/* Custom color for the present radio button */
+.mat-radio-button[value="1"] .mat-radio-outer-circle {
+    border-color: green; /* Green color for the outer circle */
+  }
+  
+  .mat-radio-button[value="1"]:checked .mat-radio-inner-circle {
+    background-color: green; /* Green inner circle when checked */
+  }
+  
+  .mat-radio-button[value="1"] .mat-radio-label {
+    color: green; /* Green label text */
+  }
+  
+  /* Custom color for the absent radio button */
+  .mat-radio-button[value="0"] .mat-radio-outer-circle {
+    border-color: red; /* Red color for the outer circle */
+  }
+  
+  .mat-radio-button[value="0"]:checked .mat-radio-inner-circle {
+    background-color: red; /* Red inner circle when checked */
+  }
+  
+  .mat-radio-button[value="0"] .mat-radio-label {
+    color: red; /* Red label text */
+  }

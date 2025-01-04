@@ -640,4 +640,25 @@ export class ManageService {
   unit_delete(data: any) {
     return this.http.post<any>(this.baseUrl + 'unit_delete.php', data);
   }
+
+
+  // for attendernce 
+
+  attendanceMark(data: any) {
+    return this.http.post(`${this.baseUrl}attendance.php`, data)
+  }
+
+  attendance_update(data: any) {
+    return this.http.put(`${this.baseUrl}attendance.php`, data)
+  }
+
+  attendance_getAll() {
+    return this.http.get(`${this.baseUrl}attendance.php`)
+  }
+
+  attendance_getbyStd(std_id: number) {
+    return this.http.get(`${this.baseUrl}attendance.php?std_id_fk=${std_id}`)
+  }
+
+
 } 

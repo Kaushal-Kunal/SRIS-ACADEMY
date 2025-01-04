@@ -137,6 +137,8 @@ import { CertificateLoginComponent } from './institute/certificate-login/certifi
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AddunitComponent } from './institute/Unit/addunit/addunit.component';
 import { ViewUnitComponent } from './institute/Unit/view-unit/view-unit.component';
+import { AttendanceListComponent } from './institute/Attendance/attendance-list/attendance-list.component';
+import { AttendanceBatchByComponent } from './institute/Attendance/attendance-batch-by/attendance-batch-by.component';
 
 @NgModule({
   declarations: [
@@ -250,6 +252,8 @@ import { ViewUnitComponent } from './institute/Unit/view-unit/view-unit.componen
     CertificateLoginComponent,
     AddunitComponent,
     ViewUnitComponent,
+    AttendanceListComponent,
+    AttendanceBatchByComponent,
   ],
   imports: [
     BrowserModule,

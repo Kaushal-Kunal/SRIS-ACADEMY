@@ -67,6 +67,8 @@ import { HomeEnquiryComponent } from './admin/home-enquiry/home-enquiry.componen
 import { LiveClassComponent } from './institute/live-class/live-class.component';
 import { CertificateLoginComponent } from './institute/certificate-login/certificate-login.component';
 import { ViewUnitComponent } from './institute/Unit/view-unit/view-unit.component';
+import { AttendanceListComponent } from './institute/Attendance/attendance-list/attendance-list.component';
+import { AttendanceBatchByComponent } from './institute/Attendance/attendance-batch-by/attendance-batch-by.component';
 
 const routes: Routes = [
   { path: '', component: InstituteLoginComponent },
@@ -136,7 +138,7 @@ const routes: Routes = [
         path: 'batch', component: ViewportComponent,
         children: [
           { path: '', component: BatchComponent },
-          { path: 'studentbatch', component: StdbathcbyComponent},
+          { path: 'studentbatch', component: StdbathcbyComponent },
         ]
 
       },
@@ -167,9 +169,16 @@ const routes: Routes = [
       { path: 'block', component: BlockComponent },
       { path: 'panchayat', component: PanchayatComponent },
       { path: 'ward', component: WardComponent },
-      {path: 'liveclass', component:LiveClassComponent},
-      {path:'certificateLogin', component:CertificateLoginComponent},
-      {path:'unitview', component:ViewUnitComponent},
+      { path: 'liveclass', component: LiveClassComponent },
+      { path: 'certificateLogin', component: CertificateLoginComponent },
+      { path: 'unitview', component: ViewUnitComponent },
+
+
+      // for the attendance crud 
+
+      { path: 'attendancelist', component: AttendanceListComponent },
+      { path: 'attendanceBatchbBy', component: AttendanceBatchByComponent },
+
     ]
   },
 
@@ -197,7 +206,7 @@ const routes: Routes = [
       { path: 'instquestionbank', component: InstQuestionBankComponent },
       { path: 'quizdashboard', component: QuizDashboardComponent },
       { path: 'quizresult', component: QuizresultComponent },
-      {path: 'liveclass', component:LiveClassComponent}
+      { path: 'liveclass', component: LiveClassComponent }
 
     ]
   },
