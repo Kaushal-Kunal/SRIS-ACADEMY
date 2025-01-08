@@ -658,6 +658,11 @@ export class ManageService {
 
   attendance_getbyStd(std_id: number) {
     return this.http.get(`${this.baseUrl}attendance.php?std_id_fk=${std_id}`)
+
+  }
+
+  attendencereport(data: any) {
+    return this.http.post(`${this.baseUrl}attendencereport.php`, data)
   }
 
 

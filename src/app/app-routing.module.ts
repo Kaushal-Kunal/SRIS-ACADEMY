@@ -69,6 +69,10 @@ import { CertificateLoginComponent } from './institute/certificate-login/certifi
 import { ViewUnitComponent } from './institute/Unit/view-unit/view-unit.component';
 import { AttendanceListComponent } from './institute/Attendance/attendance-list/attendance-list.component';
 import { AttendanceBatchByComponent } from './institute/Attendance/attendance-batch-by/attendance-batch-by.component';
+import { AttendanceReportComponent } from './institute/Reports/attendance-report/attendance-report.component';
+import { StudentReportComponent } from './institute/Reports/student-report/student-report.component';
+import { BatchByReportComponent } from './institute/Reports/batch-by-report/batch-by-report.component';
+import { StudentListReporComponent } from './institute/Reports/student-list-repor/student-list-repor.component';
 
 const routes: Routes = [
   { path: '', component: InstituteLoginComponent },
@@ -178,6 +182,12 @@ const routes: Routes = [
 
       { path: 'attendancelist', component: AttendanceListComponent },
       { path: 'attendanceBatchbBy', component: AttendanceBatchByComponent },
+
+      // fofr std 
+      { path: 'batchbyreport', component: BatchByReportComponent },
+      { path: 'studentlistreport', component: StudentListReporComponent },
+      { path: 'attendancereport', component: AttendanceReportComponent },
+      { path: 'studentreport', component: StudentReportComponent },
 
     ]
   },

@@ -20,6 +20,8 @@ export class InstituteSidebarComponent implements OnInit {
   action_icon6: boolean = true
   action_icon7: boolean = false
   action_icon8: boolean = true
+  action_icon9: boolean = false
+  action_icon10: boolean = true
   inst_id: any
   login_deatils: any
   login: any
@@ -27,12 +29,12 @@ export class InstituteSidebarComponent implements OnInit {
   constructor(
     private dailog: MatDialog,
     private service: ManageService,
-    private router:Router
+    private router: Router
 
-  ) { 
+  ) {
     this.login_deatils = localStorage.getItem('Token')
     this.login = JSON.parse(this.login_deatils)
-    if(!this.login.inst_id){
+    if (!this.login.inst_id) {
       this.router.navigate(['/']);
       localStorage.clear()
     }
@@ -87,6 +89,7 @@ export class InstituteSidebarComponent implements OnInit {
       this.action_icon4 = true
     }
   }
+
   account_dropdown() {
     this.master = document.getElementById("dropdown_account")
     if (this.master.style.display != "block") {
@@ -100,6 +103,22 @@ export class InstituteSidebarComponent implements OnInit {
       this.action_icon6 = true
     }
   }
+
+  report_dropdown() {
+    this.master = document.getElementById("dropdown_report")
+
+    if (this.master.style.display != "block") {
+      this.master.style.display = "block";
+      this.action_icon9 = true
+      this.action_icon10 = false
+
+    } else {
+      this.master.style.display = "none";
+      this.action_icon9 = false
+      this.action_icon10 = true
+    }
+  }
+
 
   dropdown_address() {
     this.master = document.getElementById("dropdown_address")

@@ -85,6 +85,10 @@ mat-icon {
     display: none;
 }
 
+#dropdown_report {
+    display: none;
+}
+
 #dropdown_address {
     display: none;
 }

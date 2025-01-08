@@ -139,6 +139,10 @@ import { AddunitComponent } from './institute/Unit/addunit/addunit.component';
 import { ViewUnitComponent } from './institute/Unit/view-unit/view-unit.component';
 import { AttendanceListComponent } from './institute/Attendance/attendance-list/attendance-list.component';
 import { AttendanceBatchByComponent } from './institute/Attendance/attendance-batch-by/attendance-batch-by.component';
+import { AttendanceReportComponent } from './institute/Reports/attendance-report/attendance-report.component';
+import { StudentReportComponent } from './institute/Reports/student-report/student-report.component';
+import { BatchByReportComponent } from './institute/Reports/batch-by-report/batch-by-report.component';
+import { StudentListReporComponent } from './institute/Reports/student-list-repor/student-list-repor.component';
 
 @NgModule({
   declarations: [
@@ -254,6 +258,10 @@ import { AttendanceBatchByComponent } from './institute/Attendance/attendance-ba
     ViewUnitComponent,
     AttendanceListComponent,
     AttendanceBatchByComponent,
+    AttendanceReportComponent,
+    StudentReportComponent,
+    BatchByReportComponent,
+    StudentListReporComponent,
   ],
   imports: [
     BrowserModule,

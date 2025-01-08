@@ -148,6 +148,35 @@
 
             </div>
         </div>
+
+        <div>
+            
+            <button mat-button class="menu-button" (click)="report_dropdown()" routerLinkActive="active">
+                <mat-icon>business</mat-icon>
+                <span>Report</span>
+                <mat-icon [hidden]="action_icon9">chevron_right</mat-icon>
+                <mat-icon [hidden]="action_icon10">expand_more</mat-icon>
+            </button>
+
+            <div id="dropdown_report">
+                <button mat-button class="master_icon" [routerLink]="['batchbyreport']" routerLinkActive="active">
+                    <mat-icon>explicit</mat-icon>
+                    <span>Attendance Report</span>
+                </button>
+
+                <button mat-button class="master_icon" [routerLink]="['studentreport']" routerLinkActive="active">
+                    <mat-icon>book</mat-icon>
+                    <span>Student Report</span>
+                </button>
+
+                <button mat-button class="master_icon" [routerLink]="['studentreport']" routerLinkActive="active">
+                    <mat-icon>notes</mat-icon>
+                    <span>Batch</span>
+                </button>
+            </div>
+        </div>
+
+
     </div>
     <div>
     </div>
