@@ -73,6 +73,8 @@ import { AttendanceReportComponent } from './institute/Reports/attendance-report
 import { StudentReportComponent } from './institute/Reports/student-report/student-report.component';
 import { BatchByReportComponent } from './institute/Reports/batch-by-report/batch-by-report.component';
 import { StudentListReporComponent } from './institute/Reports/student-list-repor/student-list-repor.component';
+import { AttendanceComponent } from './employee/attendance/attendance/attendance.component';
+import { EmpattendanceBatchByComponent } from './employee/attendance/empattendance-batch-by/empattendance-batch-by.component';
 
 const routes: Routes = [
   { path: '', component: InstituteLoginComponent },
@@ -228,6 +230,9 @@ const routes: Routes = [
       { path: '', component: EmployeeDashboardComponent },
       { path: 'employeedashboard', component: EmployeeDashboardComponent },
       { path: 'enquiry', component: EnquiryComponent },
+
+      { path: 'attendancebatch', component: EmpattendanceBatchByComponent },
+      { path: 'attendance', component: AttendanceComponent },
     ]
   },
 

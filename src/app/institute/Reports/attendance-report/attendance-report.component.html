@@ -10,7 +10,7 @@
             <option *ngFor="let std of studentList" [value]="std.std_id">{{ std.std_name }}</option>
         </select>
 
-        <select #selectedMonth>
+        <select #selectedMonth >
             <option value="" disabled>--Select Month--</option>
             <option *ngFor="let month of months" [value]="month.value">{{ month.name }}</option>
         </select>

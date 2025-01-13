@@ -143,6 +143,8 @@ import { AttendanceReportComponent } from './institute/Reports/attendance-report
 import { StudentReportComponent } from './institute/Reports/student-report/student-report.component';
 import { BatchByReportComponent } from './institute/Reports/batch-by-report/batch-by-report.component';
 import { StudentListReporComponent } from './institute/Reports/student-list-repor/student-list-repor.component';
+import { AttendanceComponent } from './employee/attendance/attendance/attendance.component';
+import { EmpattendanceBatchByComponent } from './employee/attendance/empattendance-batch-by/empattendance-batch-by.component';
 
 @NgModule({
   declarations: [
@@ -262,6 +264,10 @@ import { StudentListReporComponent } from './institute/Reports/student-list-repo
     StudentReportComponent,
     BatchByReportComponent,
     StudentListReporComponent,
+    AttendanceComponent,
+    AttendanceBatchByComponent,
+    AttendanceComponent,
+    EmpattendanceBatchByComponent
   ],
   imports: [
     BrowserModule,
