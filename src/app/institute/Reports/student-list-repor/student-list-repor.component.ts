@@ -140,8 +140,6 @@ export class StudentListReporComponent implements OnInit {
 
 
   downloadExcel() {
-      
-    // Table Columns
     const columns = [
       'Sl No',
       'Reg No',
@@ -150,7 +148,7 @@ export class StudentListReporComponent implements OnInit {
       'Mobile',
       'Email',
     ];
-  
+
     // Map Rows
     const rows = this.attentenceList.map((row: any, index: number) => [
       index + 1,
@@ -160,7 +158,7 @@ export class StudentListReporComponent implements OnInit {
       row.std_whatsapp_no,
       row.std_email,
     ]);
-  
+
     // Add Header Rows
     const headerRows = [
       ['SHRI RAM IT SOLUTIONS'], // Main Title
@@ -169,22 +167,22 @@ export class StudentListReporComponent implements OnInit {
       [], // Empty Row
       columns, // Column Headers
     ];
-  
+
     // Combine Header and Data Rows
     const finalRows = [...headerRows, ...rows];
-  
+
     // Create Worksheet
     const worksheet = XLSX.utils.aoa_to_sheet(finalRows);
-  
+
     // Create Workbook and Append Worksheet
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, 'Student List');
-  
+
     // Export Workbook to Excel File
     const fileName = `studentList_${this.selectedMonth}_${this.selectedYear}.xlsx`;
     XLSX.writeFile(workbook, fileName);
   }
-  
+
 
 
   applyFilter(event: Event) {
