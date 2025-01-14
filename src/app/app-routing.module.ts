@@ -187,9 +187,9 @@ const routes: Routes = [
 
       // fofr std 
       { path: 'batchbyreport', component: BatchByReportComponent },
-      { path: 'studentlistreport', component: StudentListReporComponent },
+      { path: 'studentreport', component: StudentListReporComponent },
       { path: 'attendancereport', component: AttendanceReportComponent },
-      { path: 'studentreport', component: StudentReportComponent },
+      { path: 'studentreports', component: StudentReportComponent },
 
     ]
   },

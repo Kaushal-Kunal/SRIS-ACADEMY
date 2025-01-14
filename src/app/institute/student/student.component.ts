@@ -157,6 +157,7 @@ export class StudentComponent implements OnInit {
       )
     }
   }
+  
   get_std(inst: any) {
     const instformdata = new FormData()
     instformdata.append('inst_id', inst)
