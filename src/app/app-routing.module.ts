@@ -75,6 +75,12 @@ import { BatchByReportComponent } from './institute/Reports/batch-by-report/batc
 import { StudentListReporComponent } from './institute/Reports/student-list-repor/student-list-repor.component';
 import { AttendanceComponent } from './employee/attendance/attendance/attendance.component';
 import { EmpattendanceBatchByComponent } from './employee/attendance/empattendance-batch-by/empattendance-batch-by.component';
+import { CourseDashboardComponent } from './student/StudayMatrial/Book/course-dashboard/course-dashboard.component';
+import { CourseUnitComponent } from './student/StudayMatrial/Book/course-unit/course-unit.component';
+import { StdNotesDashboardComponent } from './student/StudayMatrial/Notes/std-notes-dashboard/std-notes-dashboard.component';
+import { StdNoteslistComponent } from './student/StudayMatrial/Notes/std-noteslist/std-noteslist.component';
+import { StdQBDashboardComponent } from './student/StudayMatrial/QustionBank/std-qbdashboard/std-qbdashboard.component';
+import { StdQBListComponent } from './student/StudayMatrial/QustionBank/std-qblist/std-qblist.component';
 
 const routes: Routes = [
   { path: '', component: InstituteLoginComponent },
@@ -218,7 +224,17 @@ const routes: Routes = [
       { path: 'instquestionbank', component: InstQuestionBankComponent },
       { path: 'quizdashboard', component: QuizDashboardComponent },
       { path: 'quizresult', component: QuizresultComponent },
-      { path: 'liveclass', component: LiveClassComponent }
+      { path: 'liveclass', component: LiveClassComponent },
+
+      // for stduay matrial 
+      { path: 'stdcourseDashboard', component: CourseDashboardComponent },
+      { path: 'stdcoursunit', component: CourseUnitComponent },
+
+      { path: 'stdnotesDashboard', component: StdNotesDashboardComponent },
+      { path: 'stdNotes', component: StdNoteslistComponent },
+
+      { path: 'stdqbDashboard', component: StdQBDashboardComponent },
+      { path: 'stdqblist', component: StdQBListComponent },
 
     ]
   },
