@@ -22,7 +22,6 @@ export class StdNotesDashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const inst_id = localStorage.getItem('')
     const formdata = new FormData()
     formdata.append('std_id', this.logindata.std_id)
     this.service.get_admission_id_by_std_id(formdata).subscribe(

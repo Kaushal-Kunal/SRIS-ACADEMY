@@ -325,6 +325,9 @@ export class ManageService {
   get_question_bank_by_inst_id(data: any) {
     return this.http.post<any>(this.baseUrl + 'get_question_bank_by_inst_id.php', data);
   }
+  get_question_bank_by_courseid(data: any) {
+    return this.http.post<any>(this.baseUrl + 'get_question_bank_by_course.php', data);
+  }
   // for institute module 
   institute_view() {
     return this.http.get<[]>(this.baseUrl + 'institute_view.php');
