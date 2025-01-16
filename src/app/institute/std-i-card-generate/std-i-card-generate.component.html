@@ -1,0 +1,62 @@
+<div class="id-card" #content (click)="onIcardDownload()">
+  <div class="id-header">
+    <!-- Institution Logo -->
+    <img
+      class="id-logo"
+      [src]="
+        generateIcard?.inst_logo
+          ? imgUrl + generateIcard.inst_logo
+          : 'assets/profile.jpg'
+      "
+      alt="Institution Logo"
+      loading="lazy"
+    />
+    <div class="inst_adr">
+      <h4>{{ "Shri Ram IT Solutions" }}</h4>
+      <p>{{ "Gajipur, Mahua Road, Imli Chowk, Vaishali, Bihar, 844504" }}</p>
+    </div>
+    <!-- Student Photo -->
+    <img
+      class="id-photo"
+      [src]="
+        generateIcard?.std_img
+          ? imgUrl + generateIcard.std_img
+          : 'assets/profile.jpg'
+      "
+      alt="Student Photo"
+      loading="lazy"
+    />
+  </div>
+
+  <div class="id-details">
+    <h1 class="m-name">{{ generateIcard?.std_name }}</h1>
+    <h3 class="m-designation">{{ generateIcard?.std_regist_no }}</h3>
+    <div class="m-info">
+      <div class="m-info-group">
+        <h4 class="info-label">
+          Father Name:
+          <span class="info-value">{{ generateIcard?.std_father_name }}</span>
+        </h4>
+        <h4 class="info-label">
+          Phone:
+          <span class="info-value">{{ generateIcard?.std_whatsapp_no }}</span>
+        </h4>
+        <h4 class="info-label">
+          Email:
+          <span class="info-value">{{
+            generateIcard?.std_email | lowercase
+          }}</span>
+        </h4>
+        <h4 class="info-label">
+          Address:
+          <span class="info-value">{{ generateIcard?.std_address }}</span>
+        </h4>
+      </div>
+    </div>
+  </div>
+
+  <div class="id-footer">
+    <span>www.shriramitsolutions.co.in</span>
+    <span>{{ generateIcard?.inst_whatsapp_no }}</span>
+  </div>
+</div>

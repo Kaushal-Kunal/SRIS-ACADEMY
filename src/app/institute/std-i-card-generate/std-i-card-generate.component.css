@@ -1,0 +1,121 @@
+.id-card{
+    border: 1px solid #ddd;
+    width: fit-content;
+  }
+  
+  .id-header{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    background-color: #02283D;
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+  }
+  
+  .id-header .id-logo{
+    position: absolute;
+    width: 80px;
+    left: 0;
+    padding: 5px;
+    border-radius: 12px;
+  }
+  .inst_adr{
+    color: #fff;
+    position: absolute;
+    left: 85px;
+    top: 3px;
+    font-family:Patrick Hand;
+  }
+  .inst_adr>h4{
+    margin: 0;
+    font-family: Patrick Hand;
+    font-size: 16px;
+  }
+  .inst_adr> p{
+    font-family: math;
+    font-size: 12px;
+    margin: 0;
+    line-height: 1.3;
+  }
+  .id-photo{
+    border-radius: 50%;
+    margin-top: 5rem;
+    margin-bottom: -4rem;
+    border: 4px solid #ddd;
+    width: 100px;
+    height: 100px;
+  }
+  
+  .id-details{
+    padding: 1rem 1rem 0;
+    margin-top: 3rem;
+  }
+  
+  .id-details h1{
+    text-align: center;
+    font-size: 1.5rem; 
+    text-transform: uppercase;
+    margin-bottom: 0;
+    margin-top: 10px;
+  }
+  
+  .id-details h3{
+    text-align: center;
+    color: #ff0000;
+    margin-top: 0;
+    font-size: 1rem;
+    margin-bottom: 1px;
+    text-transform: uppercase;
+  }
+  
+  .id-details .m-info{
+    /* display: grid; */
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+  
+  .id-details .m-info-group{
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+  }
+  
+  .id-details .m-info-group .info-value{
+    color: #8F6144;
+    font-weight: 500;
+  }
+  
+  .id-details .m-info-group .info-value.email{
+    text-transform: lowercase;
+  }
+  
+  
+  .id-details .m-info-group h4{
+    margin-bottom: 0;
+    margin-top: 0.2rem
+  }
+  
+  .id-details .m-qrcode{
+    display: flex;
+    justify-content: center;
+    align-items: center
+  }
+  
+  .id-details .m-qrcode img{
+    width: 150px;
+  }
+  
+  .id-footer{
+    background-color: #02283D;
+    color: #FFFFFF;
+    text-align: center;
+    padding: 0.3rem;
+    display: flex;
+    justify-content: space-between;
+  }
+  .id-footer > span{
+    margin: 0 10px;
+  }
+
+  
+
+  
