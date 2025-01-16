@@ -1,0 +1,100 @@
+<div class="count_area">
+  <span class="notice_text">
+    <b (click)="onTotal()" style="cursor: pointer"
+      >Total : {{ count_student }}
+    </b>
+  </span>
+  <div class="search">
+    <input
+      type="text"
+      placeholder="Search"
+      id="search_box"
+      matInput
+      (keyup)="applyFilter($event)"
+      #input
+    />
+  </div>
+</div>
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="std_id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>S.N.</th>
+      <td mat-cell *matCellDef="let row; let i = index">
+        {{ paginatorRef.pageIndex * paginatorRef.pageSize + (i + 1) }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="std_regist_no">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        Registration Number
+      </th>
+      <td mat-cell *matCellDef="let row">{{ row.std_regist_no }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="std_name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+      <td mat-cell *matCellDef="let row">{{ row.std_name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="std_whatsapp_no">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Mobile Number</th>
+      <td mat-cell *matCellDef="let row">{{ row.std_whatsapp_no }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="std_email">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Email-ID</th>
+      <td mat-cell *matCellDef="let row">{{ row.std_email }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="std_photo">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Photo</th>
+      <td mat-cell *matCellDef="let row">
+        <img
+          [hidden]="row.std_img == null"
+          src="{{ imgUrl }}{{ row.std_img }}"
+          width="60px"
+          height="60px"
+          alt="image"
+          style="border-radius: 50px"
+        />
+        <img
+          [hidden]="row.std_img != null"
+          src="{{ imgUrl }}profile.jpg"
+          width="60px"
+          height="60px"
+          alt="image"
+          style="border-radius: 50px"
+        />
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
+      <td mat-cell *matCellDef="let row">
+        <button
+          mat-icon-button
+          [hidden]="row.status == 0"
+          (click)="onIcard(row)"
+        >
+          <mat-icon>assignment_ind</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns" id="thead"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns" id="thead"></tr>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="10" style="color: silver">
+        No record found"{{ input.value }}"
+      </td>
+    </tr>
+  </table>
+
+  <mat-paginator
+    #paginatorRef
+    [pageSizeOptions]="[5, 25, 100]"
+    aria-label="Select page of users"
+  ></mat-paginator>
+</div>

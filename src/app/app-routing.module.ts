@@ -75,6 +75,7 @@ import { BatchByReportComponent } from './institute/Reports/batch-by-report/batc
 import { StudentListReporComponent } from './institute/Reports/student-list-repor/student-list-repor.component';
 import { AttendanceComponent } from './employee/attendance/attendance/attendance.component';
 import { EmpattendanceBatchByComponent } from './employee/attendance/empattendance-batch-by/empattendance-batch-by.component';
+import { StdICardComponent } from './institute/std-i-card/std-i-card.component';
 
 const routes: Routes = [
   { path: '', component: InstituteLoginComponent },
@@ -190,6 +191,7 @@ const routes: Routes = [
       { path: 'studentreport', component: StudentListReporComponent },
       { path: 'attendancereport', component: AttendanceReportComponent },
       { path: 'studentreports', component: StudentReportComponent },
+      { path: 'stdicard', component: StdICardComponent },
 
     ]
   },
