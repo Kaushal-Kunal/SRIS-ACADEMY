@@ -147,6 +147,12 @@ import { AttendanceComponent } from './employee/attendance/attendance/attendance
 import { EmpattendanceBatchByComponent } from './employee/attendance/empattendance-batch-by/empattendance-batch-by.component';
 import { StdICardComponent } from './institute/std-i-card/std-i-card.component';
 import { StdICardGenerateComponent } from './institute/std-i-card-generate/std-i-card-generate.component';
+import { CourseDashboardComponent } from './student/StudayMatrial/Book/course-dashboard/course-dashboard.component';
+import { CourseUnitComponent } from './student/StudayMatrial/Book/course-unit/course-unit.component';
+import { StdNotesDashboardComponent } from './student/StudayMatrial/Notes/std-notes-dashboard/std-notes-dashboard.component';
+import { StdNoteslistComponent } from './student/StudayMatrial/Notes/std-noteslist/std-noteslist.component';
+import { StdQBListComponent } from './student/StudayMatrial/QustionBank/std-qblist/std-qblist.component';
+import { StdQBDashboardComponent } from './student/StudayMatrial/QustionBank/std-qbdashboard/std-qbdashboard.component';
 
 @NgModule({
   declarations: [
@@ -271,7 +277,13 @@ import { StdICardGenerateComponent } from './institute/std-i-card-generate/std-i
     AttendanceComponent,
     EmpattendanceBatchByComponent,
     StdICardComponent,
-    StdICardGenerateComponent
+    StdICardGenerateComponent,
+    CourseDashboardComponent,
+    CourseUnitComponent,
+    StdNotesDashboardComponent,
+    StdNoteslistComponent,
+    StdQBListComponent,
+    StdQBDashboardComponent,
   ],
   imports: [
     BrowserModule,
