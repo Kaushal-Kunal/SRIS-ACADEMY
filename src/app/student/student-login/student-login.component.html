@@ -1,13 +1,4 @@
 <div id="wrapper">
-    <div id="login_header">
-        <h2>Educator Box</h2>
-        <button mat-button mat-raised-button color="primary" [matMenuTriggerFor]="menu">Login</button>
-        <mat-menu #menu="matMenu">
-            <button mat-menu-item class="action_btn" routerLink="/institutelogin">Institute</button>
-            <button mat-menu-item class="action_btn" routerLink="/studentlogin">Student</button>
-            <button mat-menu-item class="action_btn" routerLink="/employeelogin">Employee</button>
-        </mat-menu>
-    </div>
     <div id="login_main">
         <br>
         <div id="login_box">
@@ -43,8 +34,5 @@
             <b (click)="new_account()">Click Here</b>
         </div>
     </div>
-    <div id="login_footer">
-        <span>Powered By : <a href="https://www.greensoft.net.in/">Green Soft</a></span>
-        <span>Version 1.0</span>
-    </div>
+
 </div>

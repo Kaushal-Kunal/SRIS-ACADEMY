@@ -5,6 +5,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { StudentProfileComponent } from '../student-profile/student-profile.component';
 import { ManageService } from 'src/app/manage.service';
 import { StdChnangePwdComponent } from '../std-chnange-pwd/std-chnange-pwd.component';
+import { Router } from '@angular/router';
+import { StdICardGenerateComponent } from 'src/app/institute/std-i-card-generate/std-i-card-generate.component';
 
 @Component({
   selector: 'app-student-home',
@@ -13,7 +15,7 @@ import { StdChnangePwdComponent } from '../std-chnange-pwd/std-chnange-pwd.compo
 })
 export class StudentHomeComponent implements OnInit {
   displayedColumns: string[] = ['notification'];
-  custtomize_noti:any
+  custtomize_noti: any
   name: any;
   opened: boolean = true
   @ViewChild(MatSidenav)
@@ -24,11 +26,14 @@ export class StudentHomeComponent implements OnInit {
   login: any
   std_id: any
   action_menu: boolean = true
+  studentData: any
 
   constructor(
     private observe: BreakpointObserver,
     private dailog: MatDialog,
-    private servies:ManageService
+    private servies: ManageService,
+    private _router: Router,
+
   ) {
     if (window.innerWidth > 720) {
       this.action_menu = true
@@ -49,18 +54,18 @@ export class StudentHomeComponent implements OnInit {
         this.sidenav.close();
       }
     })
-    
+
     this.login_deatils = localStorage.getItem('Token')
     this.login = JSON.parse(this.login_deatils)
     this.std_id = this.login.std_id
     this.get_std_data(this.std_id)
     console.log(this.login.std_name)
     this.name = this.login.std_name
-    
+
     const fromdata = new FormData()
     fromdata.append("inst_id", this.login.institute_id_fk)
     this.servies.get_notification_by_inst_id(fromdata).subscribe(
-      (res:any)=>{
+      (res: any) => {
         this.custtomize_noti = res.data
         console.log(res.data)
       }
@@ -72,11 +77,12 @@ export class StudentHomeComponent implements OnInit {
     fromdata.append('std_id', std)
     this.servies.get_student_by_std_id(fromdata).subscribe(
       (res: any) => {
+        this.studentData = res.data
         this.name = res.data.std_name
-        if(res.data.std_img == null){
+        if (res.data.std_img == null) {
           this.img_url = 'profile.jpg'
         }
-        else{
+        else {
           this.img_url = res.data.std_img
         }
       }
@@ -91,7 +97,15 @@ export class StudentHomeComponent implements OnInit {
   show_profile() {
     this.dailog.open(StudentProfileComponent, {
       disableClose: true,
-      panelClass:'all_dialog'
+      panelClass: 'all_dialog'
+    });
+  }
+
+  onIcard() {
+    this.dailog.open(StdICardGenerateComponent, {
+      data: this.studentData,
+      disableClose: true,
+      panelClass: 'iCarddialog'
     });
   }
 }
