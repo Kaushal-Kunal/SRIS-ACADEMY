@@ -82,6 +82,7 @@ import { StdNotesDashboardComponent } from './student/StudayMatrial/Notes/std-no
 import { StdNoteslistComponent } from './student/StudayMatrial/Notes/std-noteslist/std-noteslist.component';
 import { StdQBDashboardComponent } from './student/StudayMatrial/QustionBank/std-qbdashboard/std-qbdashboard.component';
 import { StdQBListComponent } from './student/StudayMatrial/QustionBank/std-qblist/std-qblist.component';
+import { StdICardGenerateComponent } from './institute/std-i-card-generate/std-i-card-generate.component';
 
 const routes: Routes = [
   { path: '', component: InstituteLoginComponent },
@@ -238,6 +239,8 @@ const routes: Routes = [
       { path: 'stdqbDashboard', component: StdQBDashboardComponent },
       { path: 'stdqblist', component: StdQBListComponent },
 
+      { path: 'studentIcard', component: StdICardGenerateComponent },
+
     ]
   },
 
@@ -245,11 +248,9 @@ const routes: Routes = [
   {
     path: 'employeehome', component: EmployeeHomeComponent,
     children: [
-      { path: '', component: EmployeeDashboardComponent },
-      { path: 'employeedashboard', component: EmployeeDashboardComponent },
-      { path: 'enquiry', component: EnquiryComponent },
-
-      { path: 'attendancebatch', component: EmpattendanceBatchByComponent },
+      // { path: '', component: EmployeeDashboardComponent },
+      // { path: 'employeedashboard', component: EmployeeDashboardComponent },
+      { path: '', component: EmpattendanceBatchByComponent },
       { path: 'attendance', component: AttendanceComponent },
     ]
   },

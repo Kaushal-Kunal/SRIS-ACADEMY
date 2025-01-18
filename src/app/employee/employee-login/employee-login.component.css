@@ -10,8 +10,8 @@
 }
 #login_main {
     width: 100%;
-    height: calc(100vh - 90px);
-    background-image: url("/assets/main_back.jpeg");
+    height: calc(100vh - 0px);
+    background-image: url("https://shriramitsolutions.co.in/cms/assets/main_back.jpeg");
     background-repeat: no-repeat;
     background-size: cover;
 }

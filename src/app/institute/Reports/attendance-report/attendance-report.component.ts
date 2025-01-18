@@ -158,7 +158,7 @@ export class AttendanceReportComponent implements OnInit {
     const attendanceSummary = [
       `COURSE NAME: ${this.attentenceList[0].course_name}`,
       `Duration: ${this.attentenceList[0].course_duration} Month`,
-      `Yearly: 24/365`,
+      `Yearly: ${presentDays}/${this.attentenceList[0].course_duration*30}`,
       `Total Present Day: ${presentDays}`,
       `Total Absent Day: ${absentDays}`,
     ];

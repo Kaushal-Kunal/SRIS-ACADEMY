@@ -2,7 +2,7 @@
   <span class="enquiry_text">Fee Details</span>
 </div>
 <div class="count_area_fee">
-  <span >Total : {{count_payment}}</span>
+  <span>Total : {{count_payment}}</span>
   <div *ngIf="login.inst_id">
     <mat-form-field appearance="fill" class="month_box" *ngIf="!std_id">
       <mat-label>Year</mat-label>
@@ -14,6 +14,9 @@
         <mat-option value="2021">2021</mat-option>
         <mat-option value="2022">2022</mat-option>
         <mat-option value="2023">2023</mat-option>
+        <mat-option value="2024">2024</mat-option>
+        <mat-option value="2025">2025</mat-option>
+        <mat-option value="2026">2026</mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field appearance="fill" class="month_box" *ngIf="!std_id">
@@ -34,20 +37,21 @@
         <mat-option value="12">December</mat-option>
       </mat-select>
     </mat-form-field>
-    </div>
-    <div *ngIf="login.inst_id">
-      <mat-form-field appearance="fill">
-          <mat-label>From</mat-label>
-          <input type="date" matInput class="boxdate" (change)="fromdate($event)">
-      </mat-form-field>
+  </div>
+  <div *ngIf="login.inst_id">
+    <mat-form-field appearance="fill">
+      <mat-label>From</mat-label>
+      <input type="date" matInput class="boxdate" (change)="fromdate($event)">
+    </mat-form-field>
 
-      <mat-form-field appearance="fill">
-          <mat-label>To</mat-label>
-          <input type="date" matInput class="boxdate" (change)="todate($event)">
-      </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>To</mat-label>
+      <input type="date" matInput class="boxdate" (change)="todate($event)">
+    </mat-form-field>
   </div>
   <span class="example-spacer"></span>
-  <input type="text" [ngClass]="(login.inst_id)?inst_login : std_login" placeholder="Search" matInput (keyup)="applyFilter($event)" #input>
+  <input type="text" [ngClass]="(login.inst_id)?inst_login : std_login" placeholder="Search" matInput
+    (keyup)="applyFilter($event)" #input>
 </div>
 
 <!-- for description table -->

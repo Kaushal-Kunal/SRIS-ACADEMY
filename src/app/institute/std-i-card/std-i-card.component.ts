@@ -97,6 +97,7 @@ export class StdICardComponent implements OnInit {
       }
     )
   }
+  
   onIcard(data: any) {
     this.dailog.open(StdICardGenerateComponent, {
       data: data,

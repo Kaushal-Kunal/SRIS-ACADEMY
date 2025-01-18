@@ -28,16 +28,18 @@
     top: 3px;
     font-family:Patrick Hand;
   }
-  .inst_adr>h4{
+  .inst_adr>h2{
     margin: 0;
     font-family: Patrick Hand;
-    font-size: 16px;
+    font-size: 20px;
+    text-align: center;
   }
   .inst_adr> p{
     font-family: math;
     font-size: 12px;
     margin: 0;
     line-height: 1.3;
+    text-align: center;
   }
   .id-photo{
     border-radius: 50%;
