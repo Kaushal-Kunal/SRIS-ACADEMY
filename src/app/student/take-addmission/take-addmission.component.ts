@@ -8,6 +8,7 @@ import { AddEditTakeAddmissionComponent } from '../add-edit-take-addmission/add-
 import { ThemePalette } from '@angular/material/core';
 import { ManageService } from 'src/app/manage.service';
 import { StudentProfileComponent } from '../student-profile/student-profile.component';
+import { StdICardGenerateComponent } from 'src/app/institute/std-i-card-generate/std-i-card-generate.component';
 
 @Component({
   selector: 'app-take-addmission',
@@ -15,7 +16,7 @@ import { StudentProfileComponent } from '../student-profile/student-profile.comp
   styleUrls: ['./take-addmission.component.css']
 })
 export class TakeAddmissionComponent implements OnInit {
-  displayedColumns: string[] = ['admission_id', 'regist_no', 'std_name', 'roll_no', 'course_name', 'batch_name', 'std_whatsapp_no', 'admission_date','description', 'batch_status'];
+  displayedColumns: string[] = ['admission_id', 'regist_no', 'std_name', 'roll_no', 'course_name', 'batch_name', 'std_whatsapp_no', 'admission_date','description', 'batch_status', 'action'];
   dataSource = new MatTableDataSource();
   count_admission: number = 0;
   color: ThemePalette = 'primary'
@@ -76,7 +77,14 @@ export class TakeAddmissionComponent implements OnInit {
   }
 
 
-
+  onIcard(data: any) {
+    this.dailog.open(StdICardGenerateComponent, {
+      data: data,
+      disableClose: false,
+      panelClass: 'iCarddialog'
+    });
+  }
+  
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();

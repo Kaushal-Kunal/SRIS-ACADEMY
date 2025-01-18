@@ -6,7 +6,6 @@ import { StudentProfileComponent } from '../student-profile/student-profile.comp
 import { ManageService } from 'src/app/manage.service';
 import { StdChnangePwdComponent } from '../std-chnange-pwd/std-chnange-pwd.component';
 import { Router } from '@angular/router';
-import { StdICardGenerateComponent } from 'src/app/institute/std-i-card-generate/std-i-card-generate.component';
 
 @Component({
   selector: 'app-student-home',
@@ -98,14 +97,6 @@ export class StudentHomeComponent implements OnInit {
     this.dailog.open(StudentProfileComponent, {
       disableClose: true,
       panelClass: 'all_dialog'
-    });
-  }
-
-  onIcard() {
-    this.dailog.open(StdICardGenerateComponent, {
-      data: this.studentData,
-      disableClose: true,
-      panelClass: 'iCarddialog'
     });
   }
 }
