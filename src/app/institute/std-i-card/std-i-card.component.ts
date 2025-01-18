@@ -18,7 +18,7 @@ import { StdICardGenerateComponent } from '../std-i-card-generate/std-i-card-gen
   styleUrls: ['./std-i-card.component.css']
 })
 export class StdICardComponent implements OnInit {
-  displayedColumns: string[] = ['std_id', 'std_regist_no', 'std_photo', 'std_name', 'std_whatsapp_no', 'std_email', 'action'];
+  displayedColumns: string[] = ['std_id', 'regist_no', 'std_photo', 'std_name', 'std_whatsapp_no', 'std_email', 'action'];
   dataSource = new MatTableDataSource();
   count_student: number = 0;
   inst_id: any
@@ -83,7 +83,7 @@ export class StdICardComponent implements OnInit {
   get_std(inst: any) {
     const instformdata = new FormData()
     instformdata.append('inst_id', inst)
-    this.service.get_student_by_inst_id(instformdata).subscribe(
+    this.service.get_admission_by_inst_id(instformdata).subscribe(
       (result: any) => {
         console.log(result)
         this.FilterData = result.data
@@ -101,7 +101,7 @@ export class StdICardComponent implements OnInit {
   onIcard(data: any) {
     this.dailog.open(StdICardGenerateComponent, {
       data: data,
-      disableClose: true,
+      disableClose: false,
       panelClass: 'iCarddialog'
     });
   }

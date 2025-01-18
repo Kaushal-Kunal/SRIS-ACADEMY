@@ -34,20 +34,29 @@ export class StdICardGenerateComponent implements OnInit {
 
   onIcardDownload() {
     const content = this.content.nativeElement;
-
+  
+    // Temporarily remove padding and margin
+    const originalStyle = content.style.cssText;
+    content.style.padding = '5px';
+  
     html2canvas(content, { scale: 3 })
       .then((canvas) => {
-        const pdf = new jsPDF('p', 'mm', 'a4');
         const imgData = canvas.toDataURL('image/png');
-        const imgWidth = 190;
-        const imgHeight = (canvas.height * imgWidth) / canvas.width;
-        pdf.addImage(imgData, 'PNG', 10, 10, imgWidth, imgHeight);
-        pdf.save('I-Card.pdf');
-        alert('PDF downloaded successfully');
+        const link = document.createElement('a');
+        link.href = imgData;
+        link.download = `${this.generateIcard.std_name}I-Card.png`;
+        link.click();
+        console.log('Image downloaded successfully');
       })
       .catch((error) => {
-        console.error('Error generating PDF:', error);
-        alert('Error generating PDF');
+        console.error('Error generating image:', error);
+        alert('Error generating image');
+      })
+      .finally(() => {
+        // Restore original styles
+        content.style.cssText = originalStyle;
       });
   }
+  
+
 }

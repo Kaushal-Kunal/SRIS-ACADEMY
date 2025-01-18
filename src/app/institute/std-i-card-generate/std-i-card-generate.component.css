@@ -1,9 +1,11 @@
 .id-card{
-    border: 1px solid #ddd;
-    width: fit-content;
-  }
+    /* border: 1px solid #ddd; */
+    width:100% !important;   
+    height: 98% !important;
+   }
   
   .id-header{
+    width: 100%;
     display: flex;
     justify-content: center;
     position: relative;
@@ -55,18 +57,20 @@
   
   .id-details h1{
     text-align: center;
-    font-size: 1.5rem; 
+    font-size: 16px;
     text-transform: uppercase;
     margin-bottom: 0;
-    margin-top: 10px;
+    font-weight: 500;
+    margin: 13px 0 0 0;
+    line-height: 0;
   }
   
   .id-details h3{
     text-align: center;
     color: #ff0000;
-    margin-top: 0;
-    font-size: 1rem;
-    margin-bottom: 1px;
+    margin-top: 4px;
+    font-size: 12px;
+    margin-bottom: 0px;
     text-transform: uppercase;
   }
   
@@ -77,8 +81,8 @@
   }
   
   .id-details .m-info-group{
-    margin-bottom: 1rem;
-    text-transform: uppercase;
+    margin-bottom: 8px;
+    text-transform:capitalize;
   }
   
   .id-details .m-info-group .info-value{
@@ -93,7 +97,8 @@
   
   .id-details .m-info-group h4{
     margin-bottom: 0;
-    margin-top: 0.2rem
+    margin-top: 0;
+    font-size: 14px;
   }
   
   .id-details .m-qrcode{

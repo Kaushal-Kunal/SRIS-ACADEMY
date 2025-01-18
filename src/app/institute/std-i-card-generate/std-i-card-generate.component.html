@@ -30,7 +30,7 @@
 
   <div class="id-details">
     <h1 class="m-name">{{ generateIcard?.std_name }}</h1>
-    <h3 class="m-designation">{{ generateIcard?.std_regist_no }}</h3>
+    <h3 class="m-designation">{{ generateIcard?.regist_no }}</h3>
     <div class="m-info">
       <div class="m-info-group">
         <h4 class="info-label">
@@ -45,6 +45,20 @@
           Email:
           <span class="info-value">{{
             generateIcard?.std_email | lowercase
+          }}</span>
+        </h4>
+        <h4 class="info-label">
+          DOB:
+          <span class="info-value">{{ generateIcard?.std_dob }}</span>
+        </h4>
+        <h4 class="info-label">
+          Course:
+          <span class="info-value">{{ generateIcard?.course_name }}</span>
+        </h4>
+        <h4 class="info-label">
+          duration:
+          <span class="info-value">{{
+            generateIcard?.course_duration + ' ' + "Month"
           }}</span>
         </h4>
         <h4 class="info-label">
