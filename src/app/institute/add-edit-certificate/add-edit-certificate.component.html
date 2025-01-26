@@ -73,7 +73,7 @@
 								<mat-option value="Other">Other</mat-option>
 							</mat-select>
 						</mat-form-field>
-						
+
 
 						<input type="number" readonly [ngModel]="admin_id" formControlName="admin_id_fk" hidden>
 						<input type="number" readonly formControlName="certificate_id" redonly hidden>
@@ -220,7 +220,8 @@
 
 						<mat-form-field appearance="fill">
 							<mat-label>Registration Date</mat-label>
-							<input matInput type="date" class="boxdate" max="5050-01-01" formControlName="std_rigistration_date">
+							<input matInput type="date" class="boxdate" max="5050-01-01"
+								formControlName="std_rigistration_date">
 						</mat-form-field>
 
 						<mat-form-field appearance="fill">
@@ -231,14 +232,15 @@
 
 						<mat-form-field appearance="fill">
 							<mat-label>Date Of Issue</mat-label>
-							<input type="date" class="boxdate" max="5050-01-01" matInput formControlName="std_date_issue">
+							<input type="date" class="boxdate" max="5050-01-01" matInput
+								formControlName="std_date_issue">
 						</mat-form-field>
 
 						<mat-form-field appearance="fill">
 							<mat-label>Select Course</mat-label>
 							<mat-select formControlName="course_id_fk">
 								<mat-option *ngFor="let course of course_data"
-									[value]="course.course_name">{{course.course_name}}</mat-option>
+									[value]="course.course_id">{{course.course_name}}</mat-option>
 							</mat-select>
 						</mat-form-field>
 
@@ -270,8 +272,13 @@
 			<div class="content_area">
 
 				<div>
-					<strong>Image And Document Must be  <a target="_blank"  style="color: rgb(36, 14, 2); text-decoration: none;" href="https://support.microsoft.com/en-gb/office/rename-a-file-baea7aab-760b-4ee0-af58-06e940d505a4#:~:text=Open%20File%20Explorer%20by%20going,to%20have%20and%20press%20Enter.">renamed.</a>  Student Name and  Unique ID add .</strong>
-					<br> <i style="color: red;">you have must be decided each and every document have unique name your institute.</i> </div>
+					<strong>Image And Document Must be <a target="_blank"
+							style="color: rgb(36, 14, 2); text-decoration: none;"
+							href="https://support.microsoft.com/en-gb/office/rename-a-file-baea7aab-760b-4ee0-af58-06e940d505a4#:~:text=Open%20File%20Explorer%20by%20going,to%20have%20and%20press%20Enter.">renamed.</a>
+						Student Name and Unique ID add .</strong>
+					<br> <i style="color: red;">you have must be decided each and every document have unique name your
+						institute.</i>
+				</div>
 				<form [formGroup]="document_form">
 					<div id="doc_area">
 						<!-- for image upload -->

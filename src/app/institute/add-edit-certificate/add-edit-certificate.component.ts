@@ -27,26 +27,26 @@ export class AddEditCertificateComponent implements OnInit {
   institute_id: any
   course_data: any
   country_data: any
-  state_data:any
-  district_data:any
-  block_data:any
-  panchayat_data:any
+  state_data: any
+  district_data: any
+  block_data: any
+  panchayat_data: any
   // for new docment  
-  url:string = ''
-  aadhar_url:any = ""
-  aadhar_select:any
+  url: string = ''
+  aadhar_url: any = ""
+  aadhar_select: any
 
-  certificate_url:any = ""
-  certificate_select:any
+  certificate_url: any = ""
+  certificate_select: any
 
-  markseet_url:any = ""
-  markseet_select:any
+  markseet_url: any = ""
+  markseet_select: any
 
-  image_url:any = ""
-  image_select:any
+  image_url: any = ""
+  image_select: any
 
-  Country= "India"
-  state= "Bihar"
+  Country = "India"
+  state = "Bihar"
   constructor(
     private personal: FormBuilder,
     private permanet: FormBuilder,
@@ -66,18 +66,18 @@ export class AddEditCertificateComponent implements OnInit {
     this.inst_id = this.login.inst_id
 
     this.services.certificateBaseUrl.subscribe(
-      (res:any)=>{
+      (res: any) => {
         this.url = res
       }
     )
 
     this.services.imgBaseUrl.subscribe(
-      (res:any)=>{
-        const baseul =  res
-        this.aadhar_url =  baseul+'doc.png'
-        this.certificate_url =  baseul+'pdf_icon.jpg'
-        this.markseet_url =  baseul+'doc.png'
-        this.image_url =  baseul+'user.png'
+      (res: any) => {
+        const baseul = res
+        this.aadhar_url = baseul + 'doc.png'
+        this.certificate_url = baseul + 'pdf_icon.jpg'
+        this.markseet_url = baseul + 'doc.png'
+        this.image_url = baseul + 'user.png'
       }
     )
   }
@@ -87,9 +87,10 @@ export class AddEditCertificateComponent implements OnInit {
     formdata.append("inst_id", this.inst_id)
     this.services.get_course_by_inst_id(formdata).subscribe(
       (std_res: any) => {
+        console.log(std_res);
         this.course_data = std_res.data
       }
-    ) 
+    )
     this.services.get_country().subscribe(
       (state_res: any) => {
         this.country_data = state_res.data
@@ -107,7 +108,7 @@ export class AddEditCertificateComponent implements OnInit {
         this.district_data = district_res.data
       }
     )
-    
+
     this.personal_form = this.personal.group({
       certificate_id: [''],
       std_name: ['', Validators.required],
@@ -159,7 +160,7 @@ export class AddEditCertificateComponent implements OnInit {
     this.document_form = this.document.group({
       certificate_id: [''],
       std_aadhar_card: ['', Validators.required],
-      std_gen_certificate: ['', Validators.required], 
+      std_gen_certificate: ['', Validators.required],
       std_10th_marksheet: ['', Validators.required],
       std_image: ['', Validators.required],
       status: ['0'],
@@ -176,11 +177,11 @@ export class AddEditCertificateComponent implements OnInit {
     this.registration_form.controls['std_date_issue'].setValue(new Date().toISOString().slice(0, 10));
 
     if (this.certificate_id > 0) {
-      this.services.get_state().subscribe((state_res:any)=>{this.state_data = state_res.data})
-      this.services.get_district().subscribe((district_res:any)=>{ this.district_data = district_res.data})
-      this.services.get_block().subscribe((block_res:any)=>{ this.block_data = block_res.data})
-      this.services.get_panchayat().subscribe((panchayat_res:any)=>{ this.panchayat_data = panchayat_res.data})
-     
+      this.services.get_state().subscribe((state_res: any) => { this.state_data = state_res.data })
+      this.services.get_district().subscribe((district_res: any) => { this.district_data = district_res.data })
+      this.services.get_block().subscribe((block_res: any) => { this.block_data = block_res.data })
+      this.services.get_panchayat().subscribe((panchayat_res: any) => { this.panchayat_data = panchayat_res.data })
+
 
       this.action_text = "Update";
       const certificateiddata = new FormData();
@@ -224,7 +225,7 @@ export class AddEditCertificateComponent implements OnInit {
           this.markseet_url = this.url + res.data[0].std_10th_marksheet
           this.aadhar_url = this.url + res.data[0].std_aadhar_card
           this.certificate_url = this.url + res.data[0].std_gen_certificate
-          this.image_url = this.url +  res.data[0].std_image
+          this.image_url = this.url + res.data[0].std_image
 
           // for update as same 
           this.aadhar_select = res.data[0].std_aadhar_card
@@ -235,9 +236,9 @@ export class AddEditCertificateComponent implements OnInit {
       })
     }
   }
-  
+
   personal_add() {
-    if(this.certificate_id > 0){
+    if (this.certificate_id > 0) {
       const personaldata = new FormData();
       personaldata.append('certificate_id', this.certificate_id);
       personaldata.append('std_name', this.personal_form.get('std_name')?.value);
@@ -266,30 +267,30 @@ export class AddEditCertificateComponent implements OnInit {
 
       return
     }
-      const personaldata = new FormData();
-      personaldata.append('std_name', this.personal_form.get('std_name')?.value);
-      personaldata.append('std_father_name', this.personal_form.get('std_father_name')?.value);
-      personaldata.append('std_mother_name', this.personal_form.get('std_mother_name')?.value);
-      personaldata.append('std_dob', this.personal_form.get('std_dob')?.value);
-      personaldata.append('std_contact_no', this.personal_form.get('std_contact_no')?.value);
-      personaldata.append('std_alt_contect_no', this.personal_form.get('std_alt_contect_no')?.value);
-      personaldata.append('std_email', this.personal_form.get('std_email')?.value);
-      personaldata.append('std_aadhar_no', this.personal_form.get('std_aadhar_no')?.value);
-      personaldata.append('std_category', this.personal_form.get('std_category')?.value);
-      personaldata.append('std_gender', this.personal_form.get('std_gender')?.value);
-      personaldata.append('institute_id_fk', this.inst_id);
-      personaldata.append('admin_id_fk', this.personal_form.get('admin_id_fk')?.value);
-      this.services.post_certificate_personal(personaldata).subscribe(
-        (res: any) => {
-          console.log(res)
-          this.popup.success({ detail: 'Success', summary: 'Personal Data Saved' })
-        },
-        (error: any) => {
-          console.log(error)
-          this.popup.error({ detail: 'Fail', summary: 'Personal Data Fail' })
-        }
-      )
-   
+    const personaldata = new FormData();
+    personaldata.append('std_name', this.personal_form.get('std_name')?.value);
+    personaldata.append('std_father_name', this.personal_form.get('std_father_name')?.value);
+    personaldata.append('std_mother_name', this.personal_form.get('std_mother_name')?.value);
+    personaldata.append('std_dob', this.personal_form.get('std_dob')?.value);
+    personaldata.append('std_contact_no', this.personal_form.get('std_contact_no')?.value);
+    personaldata.append('std_alt_contect_no', this.personal_form.get('std_alt_contect_no')?.value);
+    personaldata.append('std_email', this.personal_form.get('std_email')?.value);
+    personaldata.append('std_aadhar_no', this.personal_form.get('std_aadhar_no')?.value);
+    personaldata.append('std_category', this.personal_form.get('std_category')?.value);
+    personaldata.append('std_gender', this.personal_form.get('std_gender')?.value);
+    personaldata.append('institute_id_fk', this.inst_id);
+    personaldata.append('admin_id_fk', this.personal_form.get('admin_id_fk')?.value);
+    this.services.post_certificate_personal(personaldata).subscribe(
+      (res: any) => {
+        console.log(res)
+        this.popup.success({ detail: 'Success', summary: 'Personal Data Saved' })
+      },
+      (error: any) => {
+        console.log(error)
+        this.popup.error({ detail: 'Fail', summary: 'Personal Data Fail' })
+      }
+    )
+
   }
 
 
@@ -348,14 +349,14 @@ export class AddEditCertificateComponent implements OnInit {
     })
   }
 
-  document_submit() { 
+  document_submit() {
     console.log(this.certificate_id)
     const documentdata = new FormData();
     documentdata.append('certificate_id', this.certificate_id);
     documentdata.append('std_aadhar_card', this.aadhar_select[0]);
     documentdata.append('std_gen_certificate', this.certificate_select[0]);
     documentdata.append('std_10th_marksheet', this.markseet_select[0]);
-    documentdata.append('std_image',this.image_select[0]);
+    documentdata.append('std_image', this.image_select[0]);
     documentdata.append('institute_id_fk', this.inst_id);
     this.services.put_certificate_document(documentdata).subscribe({
       next: (res: any) => {
@@ -371,74 +372,74 @@ export class AddEditCertificateComponent implements OnInit {
   }
 
 
-// fro aadhar upload 
-onaadhar(files:any) {
-if (files.length === 0) {
-  return;
-}
-const reader = new FileReader();
-this.aadhar_select = files;
-console.log(this.aadhar_select)
-reader.onload = () => {
-  this.aadhar_url = reader.result;
-};
-reader.readAsDataURL(this.aadhar_select[0]);
-}
-  
-  
-// fro oncertificate upload 
-oncertificate(files:any) {
-if (files.length === 0) {
-  return;
-}
-const reader = new FileReader();
-this.certificate_select = files;
-reader.onload = () => {
-  this.certificate_url = reader.result;
-console.log(this.certificate_select)
-};
-reader.readAsDataURL(this.certificate_select[0]);
+  // fro aadhar upload 
+  onaadhar(files: any) {
+    if (files.length === 0) {
+      return;
+    }
+    const reader = new FileReader();
+    this.aadhar_select = files;
+    console.log(this.aadhar_select)
+    reader.onload = () => {
+      this.aadhar_url = reader.result;
+    };
+    reader.readAsDataURL(this.aadhar_select[0]);
   }
 
-// fro markseet upload 
-onmarkseet(files:any) {
-if (files.length === 0) {
-  return;
-}
-let reader = new FileReader();
-this.markseet_select = files;
-reader.onload = () => {
-  this.markseet_url = reader.result;
-  console.log(this.markseet_select)
-};
-reader.readAsDataURL(this.markseet_select[0]);
+
+  // fro oncertificate upload 
+  oncertificate(files: any) {
+    if (files.length === 0) {
+      return;
+    }
+    const reader = new FileReader();
+    this.certificate_select = files;
+    reader.onload = () => {
+      this.certificate_url = reader.result;
+      console.log(this.certificate_select)
+    };
+    reader.readAsDataURL(this.certificate_select[0]);
   }
 
-// fro image  upload 
-onimage(files:any) {
-if (files.length === 0) {
-  return;
-}
-let mimeType = files[0].type;
-if (mimeType.match(/image\/*/) == null) {
-  console.log('Only images are supported.');
-  return;
-}
-let reader = new FileReader();
-this.image_select = files;
-reader.onload = () => {
-  this.image_url = reader.result;
-};
-reader.readAsDataURL(this.image_select[0]);
+  // fro markseet upload 
+  onmarkseet(files: any) {
+    if (files.length === 0) {
+      return;
+    }
+    let reader = new FileReader();
+    this.markseet_select = files;
+    reader.onload = () => {
+      this.markseet_url = reader.result;
+      console.log(this.markseet_select)
+    };
+    reader.readAsDataURL(this.markseet_select[0]);
   }
 
-  get_certificate_id(){
-    if(this.certificate_id > 0){
+  // fro image  upload 
+  onimage(files: any) {
+    if (files.length === 0) {
+      return;
+    }
+    let mimeType = files[0].type;
+    if (mimeType.match(/image\/*/) == null) {
+      console.log('Only images are supported.');
+      return;
+    }
+    let reader = new FileReader();
+    this.image_select = files;
+    reader.onload = () => {
+      this.image_url = reader.result;
+    };
+    reader.readAsDataURL(this.image_select[0]);
+  }
+
+  get_certificate_id() {
+    if (this.certificate_id > 0) {
 
       return
     }
-    
-    const formdataedit =  new FormData()
+
+    const formdataedit = new FormData()
     formdataedit.append("inst_id", this.inst_id)
 
     this.services.get_certificate_by_inst_id(formdataedit).subscribe(

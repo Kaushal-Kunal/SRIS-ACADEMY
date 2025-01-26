@@ -1,27 +1,18 @@
 <div class="id-card" #content (click)="onIcardDownload()">
   <div class="id-header">
     <!-- Institution Logo -->
-    <img
-      class="id-logo"
-      src="../../../assets/logo.png"
-      alt="Institution Logo"
-      loading="lazy"
-    />
+    <img class="id-logo" src="https://shriramitsolutions.co.in/cms/assets/logo.png" alt="Institution Logo"
+      loading="lazy" />
     <div class="inst_adr">
       <h2>{{ "Shri Ram IT Solutions" }}</h2>
       <p>{{ "Gajipur, Mahua Road, Imli Chowk, Vaishali, Bihar, 844504" }}</p>
     </div>
     <!-- Student Photo -->
-    <img
-      class="id-photo"
-      [src]="
+    <img class="id-photo" [src]="
         generateIcard?.std_img
           ? imgUrl + generateIcard.std_img
           : 'assets/profile.jpg'
-      "
-      alt="Student Photo"
-      loading="lazy"
-    />
+      " alt="Student Photo" loading="lazy" />
   </div>
 
   <div class="id-details">
@@ -41,7 +32,7 @@
           Email:
           <span class="info-value">{{
             generateIcard?.std_email | lowercase
-          }}</span>
+            }}</span>
         </h4>
         <h4 class="info-label">
           DOB:
@@ -55,7 +46,7 @@
           duration:
           <span class="info-value">{{
             generateIcard?.course_duration + ' ' + "Month"
-          }}</span>
+            }}</span>
         </h4>
         <h4 class="info-label">
           Address:
