@@ -83,8 +83,12 @@ import { StdNoteslistComponent } from './student/StudayMatrial/Notes/std-notesli
 import { StdQBDashboardComponent } from './student/StudayMatrial/QustionBank/std-qbdashboard/std-qbdashboard.component';
 import { StdQBListComponent } from './student/StudayMatrial/QustionBank/std-qblist/std-qblist.component';
 import { StdICardGenerateComponent } from './institute/std-i-card-generate/std-i-card-generate.component';
+import { SpleshComponent } from './splesh/splesh.component';
+import { LoginTypeComponent } from './login-type/login-type.component';
 
 const routes: Routes = [
+  { path: '', component: SpleshComponent },
+  { path: 'logintype', component: LoginTypeComponent },
   { path: '', component: InstituteLoginComponent },
   {
     path: 'homepage', component: HomepageComponent,

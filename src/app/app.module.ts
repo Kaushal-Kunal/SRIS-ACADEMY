@@ -153,6 +153,8 @@ import { StdNotesDashboardComponent } from './student/StudayMatrial/Notes/std-no
 import { StdNoteslistComponent } from './student/StudayMatrial/Notes/std-noteslist/std-noteslist.component';
 import { StdQBListComponent } from './student/StudayMatrial/QustionBank/std-qblist/std-qblist.component';
 import { StdQBDashboardComponent } from './student/StudayMatrial/QustionBank/std-qbdashboard/std-qbdashboard.component';
+import { LoginTypeComponent } from './login-type/login-type.component';
+import { SpleshComponent } from './splesh/splesh.component';
 
 @NgModule({
   declarations: [
@@ -284,6 +286,8 @@ import { StdQBDashboardComponent } from './student/StudayMatrial/QustionBank/std
     StdNoteslistComponent,
     StdQBListComponent,
     StdQBDashboardComponent,
+    LoginTypeComponent,
+    SpleshComponent,
   ],
   imports: [
     BrowserModule,

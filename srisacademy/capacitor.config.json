@@ -1,0 +1,10 @@
+{
+  "appId": "com.srisacademy",
+  "appName": "SRIS ACADEMEY",
+  "webDir": "dist",
+  "plugins": {
+    "SplashScreen": {
+      "launchAutoHide": false
+    }
+  }
+}
